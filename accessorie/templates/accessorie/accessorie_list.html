@@ -1,0 +1,27 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block entrega_content %}
+
+{% for accessorie in accessories %}
+
+    <!-- Post preview-->
+    <div class="card-body">
+        <h3>Accessorie brand: {{ accessorie.brand }}</h3>
+        <h3>model: {{ accessorie.model }}</h3>
+        <h3>description: {{ accessorie.description }}</h3>
+        <h3>price: {{ accessorie.price }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+
+{% endfor %}
+
+{% endblock %}
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Securit

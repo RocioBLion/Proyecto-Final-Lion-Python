@@ -1,0 +1,17 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block entrega_content %}
+
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Save cellphone" />
+    </form>
+</div>
+
+<!-- Divider-->
+<hr/>
+
+{% endblock %}
