@@ -7,3 +7,5 @@ def index(request):
         context={},
         template_name="home/index.html",
     ) 
+    
+    

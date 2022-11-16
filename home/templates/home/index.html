@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+   
+   {% load static %}
 
    <!-- basic -->
    <meta charset="utf-8">
@@ -70,13 +72,13 @@
                               <a class="nav-link" href="static/home/about.html">About</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="computer.html">Computer</a>
+                              <a class="nav-link" href="{% url 'computer:computer-list' %}">Computer</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="laptop.html">Laptop</a>
-                           </li>
+                              <a class="nav-link" href="{% url 'cellphone:cellphone-list' %}">Cellphone</a>
+                                 </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="product.html">Products</a>
+                              <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessorie</a>
                            </li>
                            <li class="nav-item">
                               <a class="nav-link" href="contact.html">Contact Us</a>
