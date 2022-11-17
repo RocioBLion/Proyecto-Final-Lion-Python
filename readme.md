@@ -14,4 +14,6 @@ Utilizada como proyecto final del curso de Python en CoderHouse.
 
 Para detener el servidor, utilizar CTRL+C.
 
-El video de prueba de la página se encuentra a continuación: (insertar link)
+ # Video de prueba 
+ 
+ Video de prueba con una demostracion de la página en funcionamiento: (insertar link)
