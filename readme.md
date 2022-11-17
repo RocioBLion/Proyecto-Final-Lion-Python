@@ -1,4 +1,4 @@
-README.md
+## README.md
 
 Este proyecto "Web' fue realizado por Rocío Lión, Andrea Regueira y Germán Herrera. 
 El lenguaje de programación es Python, bajo el framework Django 4.1.2. 
