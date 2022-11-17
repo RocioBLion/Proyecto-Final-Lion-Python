@@ -1,9 +1,36 @@
-{% extends 'padre.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
 
+    <div class="container">
 
-{% block final %}
-    <form action="{% url 'Login' %}" method="POST"> {% csrf_token %}
-        {{mi_formulario.as_p}}
-        <input type="submit" value="Enviar">
-    </form>
-{% endblock final %}
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+         
+                <div class="card">  
+                    <div class="card-body"></div>
+                        <h2>Ingresa tus credenciales</h2>
+                        <hr>
+                        <form action="" method="post">
+                            
+                            {% csrf_token %}
+                            {{ form }}
+
+                            <input type="submit" value="Ingresar">
+                        </form>
+
+                        </div>    
+    
+            </div>    
+        </div>    
+
+    </div>
+
+</body>
+</html>
