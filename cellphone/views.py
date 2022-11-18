@@ -32,7 +32,7 @@ def create_cellphones(request):
             return render(
                 request=request,
                 context={"cellphone": Cellphone.objects.all()},
-                template_name="my_app/cellphone_list.html",
+                template_name="cellphone/cellphone_list.html",
             )
 
     cellphone_form = CellphoneForm(request.POST)
@@ -40,12 +40,12 @@ def create_cellphones(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="my_app/cellphone_form.html",
+        template_name="cellphone/cellphone_form.html",
     )
 
 def cellphones(request):
     return render(
         request=request,
         context={"cellphones": Cellphone.objects.all()},
-        template_name="my_app/cellphone_list.html",
+        template_name="cellphone/cellphone_list.html",
     )

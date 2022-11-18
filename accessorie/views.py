@@ -30,7 +30,7 @@ def create_accessories(request):
             return render(
                 request=request,
                 context={"accessorie": Accessorie.objects.all()},
-                template_name="my_app/accessorie_list.html",
+                template_name="accessorie/accessorie_list.html",
             )
 
     accessorie_form = AccessorieForm(request.POST)
@@ -38,12 +38,12 @@ def create_accessories(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="my_app/accessorie_form.html",
+        template_name="accessorie/accessorie_form.html",
     )
 
 def accessories(request):
     return render(
         request=request,
         context={"accessories": Accessorie.objects.all()},
-        template_name="my_app/accessorie_list.html",
+        template_name="accessorie/accessorie_list.html",
     )

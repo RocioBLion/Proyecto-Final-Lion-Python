@@ -6,3 +6,4 @@ app_name = "home"
 urlpatterns = [
     path("", view=views.index, name="index"),
 ]
+
