@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'cellphone',
     'accessorie',
     'computer',
-    'media',
+    
 ]
 
 MIDDLEWARE = [
