@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Accessorie</title>
-</head>
-<body>
-   
-</body>
-</html>
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block final %}
+
+{% for accessorie in accessories %}
+
+    <!-- Post preview-->
+    <div class="card-body">
+        <h3>Accessorie brand: {{ accessorie.brand }}</h3>
+        <h3>Model: {{ accessorie.model }}</h3>
+        <h3>Description: {{ accessorie.description }}</h3>
+        <h3>Price: {{ accessorie.price }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+
+{% endfor %}
+
+{% endblock %}
