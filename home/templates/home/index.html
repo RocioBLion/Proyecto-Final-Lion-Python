@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
    
+=======
+   <head> 
+      {% load static %}
+>>>>>>> 9637f4af954a6d5827894c0ce135ebf0a973da5d
    <!-- basic -->
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +15,15 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
    <!-- site metas -->
+<<<<<<< HEAD
 <<<<<<<<< Temporary merge branch 1
    <title>Blog</title>
 =========
    <title>My Blog</title>
 >>>>>>>>> Temporary merge branch 2
+=======
+   {% comment %} <title>The Geek Zone</title>
+>>>>>>> 9637f4af954a6d5827894c0ce135ebf0a973da5d
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
@@ -31,8 +40,36 @@
    <!-- Tweaks for older IEs-->
    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-      media="screen">
+      media="screen"> {% endcomment %}
    <!--[if lt IE 9]>
+=======
+   <head>
+    {% load static %}
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>The Geek Zone</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css'%}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{% static 'home/css/style.css'%}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'home/css/responsive.css'%}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'home/images/fevicon.png' %}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'home/css/jquery.mCustomScrollbar.min.css'%}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
@@ -54,7 +91,7 @@
                   <div class="full">
                      <div class="center-desk">
                         <div class="logo">
-                           <a href="#"><img src="static/home/images/robotin.png" alt="#" /></a>
+                           <a href="index.html"><img src="static/home/images/robotin.png" alt="#" /></a>
                         </div>
                      </div>
                   </div>
@@ -67,29 +104,28 @@
                      </button>
                      <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
-                           <!-- Link Opcional <li class="nav-item active">
+                           <!-- <li class="nav-item active">
                               <a class="nav-link" href="index.html">Home</a>
                            </li> -->
                            <li class="nav-item">
-                              <a class="nav-link" href="static/home/cellphone_list.html">Cellphones</a>
+                              <a class="nav-link" href="static/home/about.html">About us</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="static/home/computer_list.html">Computers</a>
+                              <a class="nav-link" href="{% url 'computer:computer-list' %}">Computers</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="static/home/accessorie_list.html">Accesories</a>
+                              <a class="nav-link" href="{% url 'cellphone:cellphone-list' %}">Cellphones</a>
                            </li>
-                           <!-- Link Opcional <li class="nav-item">
-                              <a class="nav-link" href="product.html">Contact Us</a>
-                           </li> -->
                            <li class="nav-item">
-                              <a class="nav-link" href="static/home/about_us.html">About us</a>
+                              <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessories</a>
+                           </li>
+                           
                            </li>
                            <li class="nav-item d_none">
                               <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                            </li>
                            <li class="nav-item d_none">
-                              <a class="nav-link" href="static/home/login.html">Login</a>
+                              <a class="nav-link" href="#">Login</a>
                            </li>
                         </ul>
                      </div>
@@ -118,32 +154,10 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="text-bg">
-                              <span>Computer And Laptop</span>
-                              <h1>Accessories</h1>
-                              <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                 suffered alteration in some form, by injected humour, or </p>
-                              <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="text_img">
-                              <figure><img src="static/home/images/pct.png" alt="#" /></figure>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="carousel-item">
-               <div class="container">
-                  <div class="carousel-caption">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="text-bg">
-                              <span>Computer And Laptop</span>
-                              <h1>Accessories</h1>
-                              <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                 suffered alteration in some form, by injected humour, or </p>
+                              <span>Cellphones and Computers</span>
+                              <h1>Accesorios</h1>
+                              <p>Welcome to The Geek Zone!. Since 2012 we have been providing
+                                 our customers clients the best quality in computer supplies.</p>
                               <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
                            </div>
                         </div>
@@ -164,8 +178,8 @@
                            <div class="text-bg">
                               <span>Cellphones and Computers</span>
                               <h1>Accessories</h1>
-                              <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                 suffered alteration in some form, by injected humour, or </p>
+                              <p>Find all the consumables in our online store from
+                                 Electronics, Audio, Computers, Connectivity, Telephony, Accessories.</p>
                               <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
                            </div>
                         </div>
@@ -184,10 +198,10 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="text-bg">
-                              <span>Computer And Laptop</span>
+                              <span>Cellphones and Computers</span>
                               <h1>Accessories</h1>
-                              <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                 suffered alteration in some form, by injected humour, or </p>
+                              <p>We have the best brands! Samsung - LG - Motorola -
+                                 IPhone - TCL - Dell - Acer - HP - Lenovo - Apple - Asus - Sony - Toshiba - Genius - Kingston - </p>
                               <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
                            </div>
                         </div>
@@ -206,10 +220,32 @@
                      <div class="row">
                         <div class="col-md-6">
                            <div class="text-bg">
-                              <span>Computer And Laptop</span>
+                              <span>Cellphones and Computers</span>
                               <h1>Accessories</h1>
-                              <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                 suffered alteration in some form, by injected humour, or </p>
+                              <p>In The Geek Zone we offer you the best attention, all kind of services related with the
+                                 and personalized advice, always thinking about the welfare of our customers.</p>
+                              <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="text_img">
+                              <figure><img src="static/home/images/pct.png" alt="#" /></figure>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="container">
+                  <div class="carousel-caption">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="text-bg">
+                              <span>Cellphones and Computers</span>
+                              <h1>Accessories</h1>
+                              <p>We assure you quality products, promotions, discounts, with all the
+                                 options in the market and we have all the payment methods available. </p>
                               <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
                            </div>
                         </div>
@@ -239,28 +275,28 @@
             <div class="col-md-4">
                <div class="box_text">
                   <i><img src="static/home/images/thr.png" alt="#" /></i>
-                  <h3>Computer</h3>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                     alteration in some form, by injected humour, or randomised words which don't look even slightly
-                     believable. </p>
+                  <h3>Cellphones</h3>
+                  <p>We offer you all the variety of models and brands available in the market.
+                     Samsung - LG - IPhone - Motorola - Sony - Huawei - Alcatel - Nokia - TCL and
+                     many others in our catalog. </p>
                </div>
             </div>
             <div class="col-md-4">
                <div class="box_text">
                   <i><img src="static/home/images/thr1.png" alt="#" /></i>
-                  <h3>Laptop</h3>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                     alteration in some form, by injected humour, or randomised words which don't look even slightly
-                     believable. </p>
+                  <h3>Computers</h3>
+                  <p>We work with the best brands and have the best maintenance service.
+                     Dell - HP - APPLE - Lenovo - Asus - MSI - Toshiba - Compaq - Acer - Microsoft - Ours 
+                     products are characterized by their great design, innovation, quality and performance.</p>
                </div>
             </div>
             <div class="col-md-4">
                <div class="box_text">
                   <i><img src="static/home/images/thr2.png" alt="#" /></i>
-                  <h3>Tablet</h3>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                     alteration in some form, by injected humour, or randomised words which don't look even slightly
-                     believable. </p>
+                  <h3>Tablets</h3>
+                  <p>Our range of products is more in line with the needs and expectations of our 
+                     customers. Chuwi - Phoenix - Xiaomi - Realme - Teclast - Lenovo - Samsung - Apple -
+                     Microsoft and many more.... </p>
                </div>
             </div>
          </div>
@@ -284,31 +320,31 @@
                      <div class="col-md-4 margin_bottom1">
                         <div class="product_box">
                            <figure><img src="static/home/images/all.png" alt="#" /></figure>
-                           <h3>All in one</h3>
+                           <h3>Computer</h3>
                         </div>
                      </div>
                      <div class="col-md-4 margin_bottom1">
                         <div class="product_box">
-                           <figure><img src="static/home/images/lap.png" alt="#" /></figure>
-                           <h3>Laptops</h3>
+                           <figure><img src="static/home/images/product2.png" alt="#" /></figure>
+                           <h3>Mouse</h3>
                         </div>
                      </div>
                      <div class="col-md-4 margin_bottom1">
                         <div class="product_box">
-                           <figure><img src="static/home/images/tab.png" alt="#" /></figure>
-                           <h3>Tablets</h3>
+                           <figure><img src="static/home/images/product3.png" alt="#" /></figure>
+                           <h3>Camara</h3>
                         </div>
                      </div>
                      <div class="col-md-4 margin_bottom1">
                         <div class="product_box">
                            <figure><img src="static/home/images/product4.png" alt="#" /></figure>
-                           <h3>Accessories</h3>
+                           <h3>Speakers</h3>
                         </div>
                      </div>
                      <div class="col-md-4 margin_bottom1">
                         <div class="product_box">
-                           <figure><img src="static/home/images/gat.png" alt="#" /></figure>
-                           <h3>Gadgets</h3>
+                           <figure><img src="static/home/images/product5.png" alt="#" /></figure>
+                           <h3>Modem</h3>
                         </div>
                      </div>
                      <div class="col-md-4 margin_bottom1">
@@ -320,7 +356,7 @@
                      <div class="col-md-4">
                         <div class="product_box">
                            <figure><img src="static/home/images/product7.png" alt="#" /></figure>
-                           <h3>Memories</h3>
+                           <h3>Rams</h3>
                         </div>
                      </div>
                      <div class="col-md-4">
@@ -335,9 +371,8 @@
                            <h3>Drive</h3>
                         </div>
                      </div>
-                     <!-- <div class="col-md-12">
-                        <a class="read_more" href="#">See More</a>
-                     </div> -->
+                     
+                     </div>
                   </div>
                </div>
             </div>
@@ -351,8 +386,8 @@
          <div class="row">
             <div class="col-md-6">
                <div class="titlepage">
-                  <p>Every Computer and laptop</p>
-                  <h2>Hasta 40% off !</h2>
+                  <p>All Computers and Laptops</p>
+                  <h2> 40% off !</h2>
                   <a class="read_more" href="#">Shop Now</a>
                </div>
             </div>
@@ -392,13 +427,13 @@
                                  <div class="col-md-9 offset-md-3">
                                     <div class="test_box">
                                        <i><img src="static/home/images/cos.png" alt="#" /></i>
-                                       <h4>Sandy Miller</h4>
-                                       <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                                          in culpa qui officia deserunt mollit anim id</p>
+                                       <h4>Susana Benítez</h4>
+                                       <p>I recommend The Geek Zone for the advice provided to my company.
+                                          and for the quality of all its products. It has a team of workers
+                                          highly trained for maintenance service and availability
+                                          the timetable makes it much simpler for us to operate our work.
+                                          Excellent! they always have what we need.
+                                          Thank you for always meeting all our expectations.</p>
                                     </div>
                                  </div>
                               </div>
@@ -412,13 +447,13 @@
                                  <div class="col-md-9 offset-md-3">
                                     <div class="test_box">
                                        <i><img src="static/home/images/cos.png" alt="#" /></i>
-                                       <h4>Sandy Miller</h4>
-                                       <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                                          in culpa qui officia deserunt mollit anim id</p>
+                                       <h4>Sergio Lapuente</h4>
+                                       <p>I love The Geek Zone because of their responsibility and interest in their customers,
+                                          always have a wide variety of products and a wide variety of brands that
+                                          generally not available elsewhere.
+                                          They are always in stock and their service is incredible.
+                                          I always recommend them because their track record in the market precedes them.
+                                          I thank the entire team for making sure I am happy with my purchase..</p>
                                     </div>
                                  </div>
                               </div>
@@ -432,13 +467,13 @@
                                  <div class="col-md-9 offset-md-3">
                                     <div class="test_box">
                                        <i><img src="static/home/images/cos.png" alt="#" /></i>
-                                       <h4>Sandy Miller</h4>
-                                       <p>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                                          in culpa qui officia deserunt mollit anim id</p>
+                                       <h4>Maria Cánepa</h4>
+                                       <p>The truth is that The Geek Zone provides all the necessary tools for
+                                          customers. Everything in computing in one place and with quality and variety.
+                                          that cannot be found anywhere else.
+                                          The service provided by their staff is quite acceptable, they have a great capacity for
+                                          knowledge and advice all the time.
+                                          Very satisfied and I recommend them!</p>
                                     </div>
                                  </div>
                               </div>
@@ -504,24 +539,20 @@
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                   <img class="logo1" src="static/home/images/robotin.png" alt="#" />
-                  <ul class="social_icon">
-                     <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                     <li><a href="https://github.com/RocioBLion/Proyecto_Final_Lion"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                  <!-- <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li> -->
-                  <!-- <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>       -->
-                  </ul>
+                  
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                   <h3>About Us</h3>
                   <ul class="about_us">
-                     <li>dolor sit amet, consectetur<br> magna aliqua. Ut enim ad <br>minim veniam, <br> quisdotempor
-                        incididunt r</li>
+                     <li>The Geek Zone, is an Argentine company with more than 10 years in the market. Providing you with the best quality products in electronics.<br> We have branches in Uruguay and Mexico.<br> We have a highly trained team,
+                        to help you develop your business, giving you professional advice to enhance your growth.</li>
                   </ul>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                   <h3>Contact Us</h3>
                   <ul class="conta">
-                     <li>dolor sit amet,<br> consectetur <br>magna aliqua.<br> quisdotempor <br>incididunt ut e </li>
+                     <li>To connect with us: <br> Email : info@thegeekzone.com.ar</li>
+                     <li>@andrearegueira<br> @rociolion <br>@germanherrera<br> Monday to Saturday <br>from 9:00hs to 20:00hs </li>
                   </ul>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
@@ -537,7 +568,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                     <p>CoderHouse © 2022 All Rights Reserved.</a></p>
+                     <p>The Geek Zone © 2012 All Rights Reserved.</a></p>
                   </div>
                </div>
             </div>

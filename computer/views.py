@@ -30,7 +30,7 @@ def create_computers(request):
             return render(
                 request=request,
                 context={"computer": Computer.objects.all()},
-                template_name="my_app/computer_list.html",
+                template_name="computer/computer_list.html",
             )
 
     computer_form = ComputerForm(request.POST)
@@ -38,12 +38,13 @@ def create_computers(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="my_app/computer_form.html",
+        template_name="computer/computer_form.html",
     )
 
 def computers(request):
     return render(
         request=request,
         context={"computers": Computer.objects.all()},
-        template_name="my_app/computer_list.html",
+        template_name="computer/computer_list.html",
     )
+    
