@@ -6,8 +6,7 @@ class Accessorie (models.Model):
     description = models.TextField()
     price = models.IntegerField()
     image = models.ImageField(upload_to="products", null=True)
-
-
-
+    
+ 
     def __str__(self):
         return f"{self.brand} - {self.model} - {self.description} - {self.price}"
