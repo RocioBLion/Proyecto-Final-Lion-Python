@@ -1,8 +1,16 @@
+from datetime import datetime
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.contrib import messages
 
 from computer.models import Computer
 from computer.forms import ComputerForm
+
+def get_computers(request):
+    courses = Computer.objects.all()
+    paginator = Paginator(courses, 3)
+    page_number = request.GET.get("page")
+    return paginator.get_page(page_number)
 
 def create_computers(request):
     if request.method == "POST":
@@ -44,7 +52,7 @@ def create_computers(request):
 def computers(request):
     return render(
         request=request,
-        context={"computers": Computer.objects.all()},
+        context={"computers": get_computers(request)},
         template_name="computer/computer_list.html",
     )
     
