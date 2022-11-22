@@ -3,9 +3,11 @@ from django.contrib import messages
 from home.forms import UserRegisterForm
 from home.forms import UserUpdateForm
 from django.shortcuts import redirect
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 
+from computer.models import Computer
 
 def index(request):
     return render(
@@ -13,6 +15,26 @@ def index(request):
         context={},
         template_name="home/index.html",
     ) 
+    
+def search(request):
+    search_param = request.GET["search_param"]
+    print("search: ", search_param)
+    context_dict = dict()
+    if search_param:
+        query = Q(name__contains=search_param)
+        query.add(Q(code__contains=search_param), Q.OR)
+        computers = Computer.objects.filter(query)
+        context_dict.update(
+            {
+                "computers": computers,
+                "search_param": search_param,
+            }
+        )
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="home/index.html",
+    )
     
 def register(request):
     form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
