@@ -96,19 +96,23 @@
       <!-- end header -->
       <!-- about section -->
       <div class="about">
-         <div class="container">
-            <div class="row d_flex">
-               <div class="col-md-5">
-                  <div class="titlepage">
+         <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="site-heading">
                      <h2>Our computers</h2>
-                     <p>
-                     </p>
-                     
                   </div>
                </div>
-               <div class="col-md-7">
+           </div> 
+           <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+           <a class="button_custom" href="{% url 'computer:computer-add' %}">Crear nuevo Estudiente</a>
+           </div>
+               </div>
+               <!--<div class="col-md-7">
                   <div class="about_img">
-                     <figure><img src="{% static 'computer/images/about.jpg'%}" alt="#"/></figure>
+                     <figure><img src="{% static 'computer/images/about.jpg'%}" alt="#"/></figure>-->
                   </div>
                </div>
             </div>
