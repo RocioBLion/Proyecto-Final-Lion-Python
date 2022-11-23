@@ -3,7 +3,7 @@
    <head> 
       
       {% load static %}
-      
+      <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -15,15 +15,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="{% static 'computer/css/bootstrap.min.css'%}">
+      <link rel="stylesheet" href="{% static 'computer/css/bootstrap.min.css' %}">
       <!-- style css -->
-      <link rel="stylesheet" href="{% static 'computer/css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'computer/css/style.css' %}">
       <!-- Responsive-->
-      <link rel="stylesheet" href="{% static 'computer/css/responsive.css'%}">
+      <link rel="stylesheet" href="{% static 'computer/css/responsive.css' %}">
       <!-- fevicon -->
-      <link rel="icon" href="{% static 'computer/images/fevicon.gif'%}" type="image/gif" />
+      <link rel="icon" href="{% static 'computer/images/fevicon.gif' %}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{% static 'computer/css/jquery.mCustomScrollbar.min.css'%}">
+      <link rel="stylesheet" href=" {% static 'computer/css/jquery.mCustomScrollbar.min.css' %}">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -32,12 +32,11 @@
    <body class="main-layout inner_position computer_page">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="{% static 'computer/images/loading.gif'%}" type="image/gif" alt="#" /></div>
+         <div class="loader"><img src="{% static 'computer/images/loading.gif' %}" type="image/gif" alt="#" /></div>
       </div>
-
-
       <!-- end loader -->
-      {% block my_blog_header %}
+      <!-- header -->
+      {% block my_pyme_header %}
       <header>
          <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -100,7 +99,7 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>© 2022 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>© 2022 All Rights Reserved.</p>
                      </div>
                   </div>
                </div>
@@ -109,7 +108,6 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
-
       <script src="{% static 'computer/js/jquery.min.js'%}"></script>
       <script src="{% static 'computer/js/popper.min.js'%}"></script>
       <script src="{% static 'computer/js/bootstrap.bundle.min.js'%}"></script>
@@ -118,16 +116,8 @@
       <script src="{% static 'computer/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
       <script src="{% static 'computer/js/custom.js'%}"></script>
 
+</body>
 
-      
-      {% comment %} <script src="static/computer/js/jquery.min.js"></script>
-      <script src="static/computer/js/popper.min.js"></script>
-      <script src="static/computer/js/bootstrap.bundle.min.js"></script>
-      <script src="static/computer/js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="static/computer/js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="static/computer/js/custom.js"></script> {% endcomment %}
-   </body>
 </html>
 
 

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block my_pyme_title %}
-Login
+Register
 {% endblock %}
 
 {% block my_pyme_header %}
@@ -11,26 +11,21 @@ Login
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-15 col-lg-16 col-xl-14">
                 <div class="site-heading">
-                    <h1>Login</h1>
-                    <span class="subheading">CoderHouse</span>
+                    <h1>Registrar Nuevo Usuario</h1>
+                    <span class="subheading">The Geek Zone</span>
                 </div>
             </div>
         </div>
-        <a class="button_custom" href="{% url 'home:user-register' %}">Registrar nuevo usuario</a>
     </div>
 </header>
 {% endblock %}
 
 {% block my_pyme_content %}
 
-{% if form.errors %}
-<p style="color: red">Combinación de username y password incorrecta, intenta de nuevo.</p>
-{% endif %}
-
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Iniciar Sesión" />
+    <input type="submit" class="btn btn-primary" value="Registrar usuario" />
 </form>
 
 {% endblock %}

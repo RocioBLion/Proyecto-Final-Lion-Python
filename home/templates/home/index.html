@@ -60,7 +60,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <!-- body -->
-
 <body class="main-layout">
    <!-- loader  -->
    <div class="loader_bg">
@@ -105,18 +104,17 @@
                            <li class="nav-item">
                               <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessories</a>
                            </li>
-
-                           </li> 
-                           <!--<li class="nav-item d_none">
+                           <!-- </li> 
+                           <li class="nav-item d_none">
                               <a class="nav-link" href="{% static 'home/login.html' %}">Login</a>  
                            </li> -->
-                        <!--{% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home:user-update' %}">User update</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Log out - {{ user.username }}</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Log in</a></li>
                         {% endif %}
-                        </ul> -->
+                        </ul> 
                      </div>
                   </nav>
                </div>
@@ -547,7 +545,7 @@
                            {% if search_param %} value="{{ search_param }}" {% endif %}
                            >
                            <input type="submit" value="Search">
-                           <a style="color: white" href="{% url 'home:index' %}"><i class="fa fa-undo"></i></a>
+                           <a style="color: white" href="{% url 'home:index' %}"><i class="fa fa-search"></i></a>
                </div>
                </form>
                </div>
