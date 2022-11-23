@@ -4,13 +4,6 @@
       
     {% load static %}
 
-      <!-- ckeditor-->
-    {% block extrahead %}
-    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-    {{ block.super }}
-    {% endblock %}
-<!-- ckeditor-->
-      
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -51,7 +44,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-15 col-lg-16 col-xl-14">
                     <div class="site-heading">
-                        <h2>Formulario para guardar/editar</h2>
+                        <h2>Delete comment</h2>
+                        <span class="subheading">Created by:{{ comment.owner.first_name }} {{ comment.owner.last_name }} </span>
                     </div>
                 </div>
             </div>
@@ -60,17 +54,18 @@
       {% endblock %}
       
       {% block my_pyme_content %}
-    <div>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }} <!-- ckeditor-->
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Guardar curso" />
-        </form>
-    </div>
-    <!-- Divider-->
-    <hr class="my-4" />
+      
+      <h1>Are you sure you want to delete the following comment?</h1>
+      <p>{{ comment.text }}</p>
+
+      <form action="" method="POST">
+         {% csrf_token %}
+         <input class="btn btn-danger" type="submit" value="Yes, delete.">
+         <a class="btn btn-primary" href="{% url 'computer:computer-detail' comment.computer.id %}" >Cancel</a>
+      </form>
+
       {% endblock %}
+
 
       <footer>
          <div class="footer">

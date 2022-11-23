@@ -4,13 +4,6 @@
       
     {% load static %}
 
-      <!-- ckeditor-->
-    {% block extrahead %}
-    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-    {{ block.super }}
-    {% endblock %}
-<!-- ckeditor-->
-      
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -51,26 +44,66 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-15 col-lg-16 col-xl-14">
                     <div class="site-heading">
-                        <h2>Formulario para guardar/editar</h2>
+                        <h1>{{ computer.model }}</h1>
+                        <span class="subheading">Computer details</span>
                     </div>
                 </div>
             </div>
+            <a class="button_custom" href="{% url 'computer:computer-add' %}">Create new computer</a>
         </div>
       </header>
       {% endblock %}
       
       {% block my_pyme_content %}
-    <div>
-        <form action="" method="POST" enctype="multipart/form-data">
+      <div class="post-preview">
+         <h3 class="post-subtitle">Brand: {{ computer.brand }}</h3>
+         <p class="post-meta">
+             Created by
+             <span style="color: #0b4956;" href="">{{ computer.owner.username }}</span>
+             ( {{ computer.created_at }} )
+             <br>
+             Last update( {{ computer.updated_at }} )
+         </p>
+         
+         <p class="card-text ">{{ computer.description|safe }}</p> <!-- ckeditor-->
+
+         {% if user == computer.owner or user.is_superuser %}
+            <p style="text-align: center">
+               <a href="{% url 'computer:computer-update' computer.id %}">
+                  <i class="fa fa-pencil" style="color: #1c1c91;"></i> Edit Computer
+               </a>
+               &ensp; | &ensp;
+               <a href="{% url 'computer:computer-delete' computer.id %}">
+                  <i class="fa fa-trash" style="color: #881a1a;"></i> Delete Computer
+               </a>
+            </p>
+         {% endif %}
+
+         <!-- Divider-->
+         <hr class="my-4" />
+         
+         <!-- Comment creation -->
+         <form method="POST" action="{% url 'computer:comment-create' computer.id %}">
             {% csrf_token %}
-            {{ form.media }} <!-- ckeditor-->
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Guardar curso" />
-        </form>
-    </div>
-    <!-- Divider-->
-    <hr class="my-4" />
-      {% endblock %}
+            {{ comment_form }}
+         <input type="submit" value="Publish comment">
+         </form>
+         {% if not comments %}
+            <p></p>
+         {% endif %}
+
+         <!-- Comments list -->
+         {% for comment in comments %}
+            <p> {{ comment.text }}
+               ({{ comment.owner.username }} | {{ comment.updated_at }})
+               {% if user == comment.owner or user.is_superuser %}
+               <a href="{% url 'computer:comment-delete' comment.id %}"><i class="fa fa-trash" style="color: #881a1a;"></i></a>
+               {% endif %}
+            </p>
+         {% endfor %}
+</div>
+{% endblock %}
+
 
       <footer>
          <div class="footer">

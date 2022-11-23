@@ -46,4 +46,4 @@ class AccessorieForm(forms.Form):
                 "required": "True",
             }
         ),
-    )       
+    )     
