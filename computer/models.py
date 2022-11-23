@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 
 class Computer(models.Model):
     brand= models.CharField(max_length=40, null=False, blank=False)
-    model = models.IntegerField(null=False, blank=False)
+    model = models.CharField(max_length=40, null=False, blank=False)
     description = RichTextField(null=True, blank=True)
     price = models.IntegerField()
     image = models.ImageField(upload_to='computer', null=True, blank=True)
@@ -32,7 +32,7 @@ class Computer(models.Model):
 class Comment(models.Model):
     text = models.TextField(
         validators=[
-            MinLengthValidator(10, "El comentario debe ser mayor de 10 caracteres")
+            MinLengthValidator(10, "The comment must be longer than 10 characters")
         ]
     )
     computer = models.ForeignKey(Computer, on_delete=models.CASCADE)
@@ -41,12 +41,3 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Computer (models.Model):
-    brand = models.CharField(max_length=20)
-    model =  models.CharField(max_length=20)
-    description = models.TextField()
-    price = models.IntegerField()
-    image = models.ImageField(upload_to='computer', null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.brand} - {self.model} - {self.description} - {self.price}"

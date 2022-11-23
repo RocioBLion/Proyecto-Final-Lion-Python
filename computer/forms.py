@@ -5,13 +5,13 @@ from computer.models import Computer
 
 class ComputerForm(forms.ModelForm):
     brand = forms.CharField(
-        label="brand the Computer",
+        label="Computer brand",
         max_length=40,
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "computer-brand",
-                "placeholder": "Brand the computer",
+                "placeholder": "Computer brand",
                 "required": "True",
             }
         ),
@@ -23,14 +23,14 @@ class ComputerForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "computer-model",
-                "placeholder": "Model the computer",
+                "placeholder": "Computer model",
                 "required": "True",
             }
         ),
     )
 
     description = forms.CharField(
-        label="Descripción:",
+        label="Description:",
         required=False,
         widget=CKEditorWidget(),
     )
@@ -52,7 +52,7 @@ class CommentForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 "class": "comment-text",
-                "placeholder": "Enter a Comment...",
+                "placeholder": "Enter a comment...",
                 "required": "True",
                 "max_length": 500,
                 "min_length": 10,
