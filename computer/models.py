@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 
 class Computer(models.Model):
     brand= models.CharField(max_length=40, null=False, blank=False)
-    model = models.IntegerField(null=False, blank=False)
+    model = models.CharField(max_length=40, null=False, blank=False)
     description = RichTextField(null=True, blank=True)
     price = models.IntegerField()
     image = models.ImageField(upload_to='computer', null=True, blank=True)

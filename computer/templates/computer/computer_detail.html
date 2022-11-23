@@ -65,6 +65,13 @@
              Last update( {{ computer.updated_at }} )
          </p>
          
+          <!-- Image -->
+         {% if computer.image %}
+            <div style="text-align: center;">
+               <img height="250px" src="{{ computer.image.url }}">
+            </div>
+         {% endif %}
+
          <p class="card-text ">{{ computer.description|safe }}</p> <!-- ckeditor-->
 
          {% if user == computer.owner or user.is_superuser %}

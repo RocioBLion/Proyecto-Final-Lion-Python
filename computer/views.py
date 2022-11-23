@@ -40,14 +40,14 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("computer:computer-list")
 
     form_class = ComputerForm
-    fields = ["name", "code", "description", "image"]
+    # fields = ["name", "code", "description", "image"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate computers"""
         data = form.cleaned_data
         form.instance.owner = self.request.user
         actual_objects = Computer.objects.filter(
-            brand=data["brand"], model=data["model"], description=data["description"], price=data["price"]
+            brand=data["brand"], model=data["model"], description=data["description"], price=data["price"], image=data["image"],
         ).count()
         if actual_objects:
             messages.error(
@@ -66,14 +66,14 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
 
 class ComputerUpdateView(LoginRequiredMixin, UpdateView):
     model = Computer
-    fields = ["brand", "model", "description", "price"]
+    fields = ["brand", "model", "description", "price", "image"]
 
     def get_success_url(self):
         computer_id = self.kwargs["pk"]
         return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
 
-    def post(self):
-        pass
+    # def post(self):
+        # pass
 
 
 class ComputerDeleteView(LoginRequiredMixin, DeleteView):
