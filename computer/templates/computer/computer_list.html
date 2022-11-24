@@ -39,7 +39,7 @@
       {% block my_pyme_header %}
       <header>
          <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-right">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-15 col-lg-16 col-xl-14">
                     <div class="site-heading">
                         <h1>List of Computers</h1>
@@ -54,7 +54,7 @@
       {% block my_pyme_content %}
          {% for computer in computer_list %}
           <!-- Post preview-->
-            <div class="post-preview">
+            <div class="post-preview " >
                <a href="{% url 'computer:computer-detail' computer.id %}">
                      <h2 class="post-title">This is the computer {{ computer.model }}</h2>
                      <h3 class="post-subtitle">Of the brand : {{ computer.brand }}</h3>
