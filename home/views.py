@@ -7,10 +7,10 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from home.forms import UserRegisterForm
 from home.forms import UserUpdateForm
-
-
-
 from computer.models import Computer
+from django.contrib.auth.forms import AuthenticationForm ,UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
 #from home.forms import AvatarForm
 #from home.models import Avatar
 
@@ -101,3 +101,33 @@ def user_update(request):
         context={"form": form},
         template_name="registration/user_form.html",
     )        
+
+
+def login_request(request):
+
+    if request.method =="POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
+            user = authenticate(username=user, password=contra)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request,"index.html", {"mensaje":f"Bienvenido {usuario}"})
+
+            else:
+
+                return render(request,"index.html", {"mensaje":"Error,datos incorrectos"})
+
+        else:
+
+                return render(request,"index.html", {"mensaje":"Error,formulario erroneo"})
+
+    
+    form = AuthenticationForm()
+
+    return render(request,"login.html", {'form':form})

@@ -6,10 +6,11 @@ from home import views
 
 app_name = "home"
 urlpatterns = [
+    path('login', views.login_request, name="Login"),
+    path("register/", view=views.register, name="user-register"),
     path("", view=views.index, name="index"),
     path("search/", views.search, name="search"),
     #path('avatar/load', views.avatar_load, name='avatar-load'),
-    path("register/", view=views.register, name="user-register"),
     path('register/update/', view=views.user_update, name='user-update'),
     path(
         'password_change/',
