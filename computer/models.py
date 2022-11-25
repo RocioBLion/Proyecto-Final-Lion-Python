@@ -22,6 +22,8 @@ class Computer(models.Model):
         unique_together = (
             "brand",
             "model",
+            "description",
+            "price",
         )
         ordering = ["-created_at"]
 

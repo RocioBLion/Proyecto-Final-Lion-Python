@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
    <head> 
+      
       {% load static %}
+      <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -13,108 +15,61 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="{% static 'cellphone/css/bootstrap.min.css'%}">
+      <link rel="stylesheet" href="{% static 'cellphone/css/bootstrap.min.css' %}">
       <!-- style css -->
-      <link rel="stylesheet" href="{% static 'cellphone/css/style.css'%}">
+      <link rel="stylesheet" href="{% static 'cellphone/css/style.css' %}">
       <!-- Responsive-->
-      <link rel="stylesheet" href="{% static 'cellphone/css/responsive.css'%}">
+      <link rel="stylesheet" href="{% static 'cellphone/css/responsive.css' %}">
       <!-- fevicon -->
-      <link rel="icon" href="{% static 'cellphone/images/fevicon.gif'%}" type="image/gif" />
+      <link rel="icon" href="{% static 'cellphone/images/fevicon.gif' %}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{% static 'cellphone/css/jquery.mCustomScrollbar.min.css'%}">
+      <link rel="stylesheet" href=" {% static 'cellphone/css/jquery.mCustomScrollbar.min.css' %}">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
    <body class="main-layout inner_position computer_page">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="{% static 'cellphone/images/loading.gif'%}" type="image/gif" alt="#" /></div>
+         <div class="loader"><img src="{% static 'cellphone/images/loading.gif' %}" type="image/gif" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
+      {% block my_pyme_header %}
       <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="container-fluid">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="cellphone_list.html"><img src="{% static 'computer/images/robotin.png'%}" alt="#" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
-                                
-                              </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="/about.html">About us</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'computer:computer-list' %}">Computer</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'cellphone:cellphone-list' %}">Cellphone</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessorie</a>
-                              </li>
-                              
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#">Login</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
+         <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-15 col-lg-16 col-xl-14">
+                    <div class="site-heading">
+                        <h1>List of Cellphones</h1>
+                    </div>
+                </div>
             </div>
-         </div>
+            <a class="button_custom" href="{% url 'cellphone:cellphone-add' %}">Create new cellphone</a>
+        </div>
       </header>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- about section -->
-      <div class="about">
-         <div class="container">
-            <div class="row d_flex">
-               <div class="col-md-5">
-                  <div class="titlepage">
-                     <h2>Our cellphones</h2>
-                     <p>
-                     </p>
-                     
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="about_img">
-                     <figure><img src="{% static 'cellphone/images/about.jpg'%}" alt="#"/></figure>
-                  </div>
-               </div>
+      {% endblock %}
+
+      {% block my_pyme_content %}
+         {% for cellphone in cellphone_list %}
+          <!-- Post preview-->
+            <div class="post-preview " >
+               <a href="{% url 'cellphone:cellphone-detail' cellphone.id %}">
+                     <h2 class="post-title">This is the cellphone {{ cellphone.model }}</h2>
+                     <h3 class="post-subtitle">Of the brand : {{ cellphone.brand }}</h3>
+               </a>
+               <p class="post-meta">
+                     Created by
+                     <span style="color: #0b4956;" href="">{{ cellphone.owner.username }}</span>
+                     ( {{ cellphone.created_at }} )
+               </p>
             </div>
-         </div>
-      </div>
-      </div>
-      <!-- end about section -->
-      <!--  footer -->
+          <!-- Divider-->
+            <hr class="my-4" />
+         {% endfor %}
+      {% endblock %}  
+
       <footer>
          <div class="footer">
             <div class="container">
@@ -136,15 +91,15 @@
                         <li>To connect with us: admin@coderhouse.com</li>
                         <li>From 8 am to 8pm  </li>
                      </ul>
-
                   </div>
+                  
                </div>
             </div>
             <div class="copyright">
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                        <p>© 2022 All Rights Reserved.</p>
                      </div>
                   </div>
                </div>
@@ -153,7 +108,6 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
-
       <script src="{% static 'cellphone/js/jquery.min.js'%}"></script>
       <script src="{% static 'cellphone/js/popper.min.js'%}"></script>
       <script src="{% static 'cellphone/js/bootstrap.bundle.min.js'%}"></script>
@@ -162,16 +116,8 @@
       <script src="{% static 'cellphone/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
       <script src="{% static 'cellphone/js/custom.js'%}"></script>
 
+</body>
 
-      
-      {% comment %} <script src="static/computer/js/jquery.min.js"></script>
-      <script src="static/computer/js/popper.min.js"></script>
-      <script src="static/computer/js/bootstrap.bundle.min.js"></script>
-      <script src="static/computer/js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="static/computer/js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="static/computer/js/custom.js"></script> {% endcomment %}
-   </body>
 </html>
 
 

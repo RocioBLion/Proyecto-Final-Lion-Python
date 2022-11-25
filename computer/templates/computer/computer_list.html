@@ -54,7 +54,7 @@
       {% block my_pyme_content %}
          {% for computer in computer_list %}
           <!-- Post preview-->
-            <div class="post-preview">
+            <div class="post-preview " >
                <a href="{% url 'computer:computer-detail' computer.id %}">
                      <h2 class="post-title">This is the computer {{ computer.model }}</h2>
                      <h3 class="post-subtitle">Of the brand : {{ computer.brand }}</h3>
