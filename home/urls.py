@@ -7,11 +7,11 @@ from home import views
 app_name = "home"
 urlpatterns = [
     path('accounts/login', views.login_request, name="Login"),
-    path("register/", view=views.register, name="user-register"),
+    path("accounts/singup", view=views.register, name="Register"),
     path("", view=views.index, name="index"),
     path("search/", views.search, name="search"),
     #path('avatar/load', views.avatar_load, name='avatar-load'),
-    path('register/update/', view=views.user_update, name='user-update'),
+    path('accounts/profile', view=views.user_update, name='user-update'),
     path(
         'password_change/',
         auth_views.PasswordChangeView.as_view(
