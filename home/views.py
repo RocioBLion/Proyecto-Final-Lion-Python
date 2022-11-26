@@ -77,7 +77,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Usuario creado exitosamente!")
-            return redirect("login")
+            return redirect("accounts/login")
 
     return render(
         request=request,
