@@ -1,10 +1,8 @@
-from django.shortcuts import render
-
 from django.contrib import messages
+from django.shortcuts import render
 
 from cellphone.models import Cellphone
 from cellphone.forms import CellphoneForm
-
 
 def create_cellphones(request):
     if request.method == "POST":
@@ -46,6 +44,6 @@ def create_cellphones(request):
 def cellphones(request):
     return render(
         request=request,
-        context={"cellphones": Cellphone.objects.all()},
-        template_name="cellphone/cellphone_list.html",
+        context={"accessories": Cellphone.objects.all()},
+        template_name="accessorie/accessorie_list.html",
     )

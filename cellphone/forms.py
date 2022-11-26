@@ -1,6 +1,5 @@
 from django import forms
 
-
 from cellphone.models import Cellphone
 
 class CellphoneForm(forms.Form):
@@ -47,4 +46,4 @@ class CellphoneForm(forms.Form):
                 "required": "True",
             }
         ),
-    )        
+    )     
