@@ -10,8 +10,7 @@ urlpatterns = [
     path('accounts/singup', views.register, name='user-register'),
     path('accounts/profile', views.user_update, name='user-update'),
     path("", view=views.index, name="index"),
-    path("search/", views.search, name="search"),
-    #path('avatar/load', views.avatar_load, name='avatar-load'),
+    path('avatar/load', views.avatar_load, name='avatar-load'),
     path(
         'password_change/',
         auth_views.PasswordChangeView.as_view(

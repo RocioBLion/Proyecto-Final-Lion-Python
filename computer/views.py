@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 from computer.models import Computer
 from computer.forms import ComputerForm
@@ -98,4 +99,25 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
         computer = self.object.computer
         return reverse("computer:computer-detail", kwargs={"pk": computer.id})
 
+    
+def search(request):
+    search_param = request.GET["search_param"]
+    print("search: ", search_param)
+    context_dict = dict()
+    if search_param:
+        query = Q(name__contains=search_param)
+        query.add(Q(code__contains=search_param), Q.OR)
+        computers = Computer.objects.filter(query)
+        
+        context_dict.update(
+            {
+                "computers": computers,
+                "search_param": search_param,
+            }
+        )
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="computer/computer-list.html",
+    )
     

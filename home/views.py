@@ -8,17 +8,17 @@ from django.shortcuts import render
 from home.forms import UserRegisterForm
 from home.forms import UserUpdateForm
 from computer.models import Computer
-from django.contrib.auth.forms import AuthenticationForm ,UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
-#from home.forms import AvatarForm
-#from home.models import Avatar
+from home.forms import AvatarForm
+from home.models import Avatar
 
-#def get_avatar_url_ctx(request):
-    #avatars = Avatar.objects.filter(user=request.user.id)
-    #if avatars.exists():
-        #return {"avatar_url": avatars[0].image.url}
-    #return {}
+def get_avatar_url_ctx(request):
+    avatars = Avatar.objects.filter(user=request.user.id)
+    if avatars.exists():
+        return {"avatar_url": avatars[0].image.url}
+    return {}
 
 def index(request):
     return render(
@@ -27,49 +27,31 @@ def index(request):
         template_name="home/index.html",
     ) 
     
-def search(request):
-    search_param = request.GET["search_param"]
-    print("search: ", search_param)
-    context_dict = dict()
-    if search_param:
-        query = Q(name__contains=search_param)
-        query.add(Q(code__contains=search_param), Q.OR)
-        computers = Computer.objects.filter(query)
-        context_dict.update(
-            {
-                "computers": computers,
-                "search_param": search_param,
-            }
-        )
+
+    
+def avatar_load(request):
+    if request.method == "POST":
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid and len(request.FILES) != 0:
+            image = request.FILES["image"]
+            avatars = Avatar.objects.filter(user=request.user.id)
+            if not avatars.exists():
+                avatar = Avatar(user=request.user, image=image)
+            else:
+                avatar = avatars[0]
+                if len(avatar.image) > 0:
+                    os.remove(avatar.image.path)
+                avatar.image = image
+            avatar.save()
+            messages.success(request, "Image uploaded successfully")
+            return redirect("home:index")
+
+    form = AvatarForm()
     return render(
         request=request,
-        context=context_dict,
-        template_name="home/index.html",
+        context={"form": form},
+        template_name="home/avatar_form.html",
     )
-    
-#def avatar_load(request):
-    #if request.method == "POST":
-        #form = AvatarForm(request.POST, request.FILES)
-        #if form.is_valid and len(request.FILES) != 0:
-            #image = request.FILES["image"]
-            #avatars = Avatar.objects.filter(user=request.user.id)
-            #if not avatars.exists():
-                #avatar = Avatar(user=request.user, image=image)
-            #else:
-                #avatar = avatars[0]
-                #if len(avatar.image) > 0:
-                    #os.remove(avatar.image.path)
-                #avatar.image = image
-            #avatar.save()
-            #messages.success(request, "Imagen cargada exitosamente")
-            #return redirect("home:index")
-
-    #form = AvatarForm()
-    #return render(
-        #request=request,
-        #context={"form": form},
-        #template_name="home/avatar_form.html",
-    #)
 
 def register(request):
     
@@ -80,7 +62,7 @@ def register(request):
 
             username = form.cleaned_data['username']
             form.save()
-            return render(request,"register.html", {"mensaje":"Usuario Creado :)"})
+            return render(request,"register.html", {"mensaje":"User created :)"})
 
     else:
         form = UserCreationForm()
@@ -119,15 +101,15 @@ def login_request(request):
             if user is not None:
                 login(request, user)
 
-                return render(request,"index.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request,"index.html", {"mensaje":f"Welcome {usuario}"})
 
             else:
 
-                return render(request,"index.html", {"mensaje":"Error,datos incorrectos"})
+                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
 
         else:
 
-                return render(request,"index.html", {"mensaje":"Error,formulario erroneo"})
+                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
 
     
     form = AuthenticationForm()

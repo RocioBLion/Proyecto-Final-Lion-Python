@@ -78,26 +78,46 @@
                            <li class="nav-item">
                               <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessories</a>
                            </li>
+                           </li>
                            <!-- </li> 
                            <li class="nav-item d_none">
                               <a class="nav-link" href="{% static 'home/login.html' %}">Login</a>  
                            </li> -->
-                           {% if user.is_authenticated %}
-                           <li class="nav-item">
-                              <a class="nav-link" href="{% url 'home:user-update' %}">User update</a></li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="{% url 'logout' %}">log out - {{ user.username }}</a></li>     
-                           {% else %}
-                           <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>                                 
-                           {% endif %}
-                        </ul>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:user-update' %}">User update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out - {{ user.username }}</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+                        {% endif %}
+                        </ul> 
                      </div>
                   </nav>
                </div>
-            </div>
-         </div>
-      </div>
-   </header>
+           </nav>
+           {% block my_pyme_header %}
+           <!-- Page Header-->
+               <div class="container position-relative px-4 px-lg-5">
+                   <div class="row gx-4 gx-lg-5 justify-content-center">
+                       <div class="col-md-10 col-lg-8 col-xl-7">
+                           <div class="site-heading">
+                              <h2>Welcome!</h4>
+                               {% if user.is_authenticated %}
+                                   <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                               {% else %}
+                               {% endif %}
+                               {% if avatar_url %}
+                                   <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
+                               {% endif %}
+                           </div>
+                       </div>
+                   </div>
+                   <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> -->
+                   {% if not avatar_url %}
+                       <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a>
+                   {% endif %}
+               </div>
+           </header>
+           {% endblock %}
    <!-- end header inner -->
    <!-- end header -->
    <!-- banner -->
@@ -490,54 +510,42 @@
                </form>
             </div>
          </div> -->
+      </div>
+   </div>
+   <!-- end contact -->
+   <!--  footer -->
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <img class="logo1" src="static/home/images/robotin.png" alt="#"/>
+                  <ul class="social_icon">
+                     <li><a href="/"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                     <li><a href="/"><i class="fa fa-github" aria-hidden="true"></i></a></li>             
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <h3>About Us</h3>
+                  <ul class="about_us">
+                     <li>The Geek Zone, is an Argentine company with more than 10 years in the market. Providing you with the best quality products in electronics.<br> 
+               </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                  <h3>Contact Us</h3>
+                  <ul class="conta">
+                     <li>To connect with us: admin@coderhouse.com</li>
+                     <li>From 8 am to 8pm  </li>
+                  </ul>
+               </div>
+               </div>
+               </form>
                </div>
             </div>
-            <!-- end contact -->
-            <!--  footer -->
-            <footer>
-               <div class="footer">
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                           <img class="logo1" src="static/home/images/robotin.png" alt="#" />
-                           <ul class="social_icon">
-                              <li><a href="/"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                              <li><a href="/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                           <h3>About Us</h3>
-                           <ul class="about_us">
-                              <li>The Geek Zone, is an Argentine company with more than 10 years in the market.
-                                 Providing you with the best quality products in electronics.<br>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                           <h3>Contact Us</h3>
-                           <ul class="conta">
-                              <li>To connect with us: admin@coderhouse.com</li>
-                              <li>From 8 am to 8pm </li>
-                           </ul>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                           <h3>What are you're looking for?</h3>
-                           <form action="{% url 'home:search' %}" method="GET">
-                              <div>
-                                 <input type="text" name="search_param" id="brand_model_or_price" placeholder="Search.."
-                                    {% if search_param %} value="{{ search_param }}" {% endif %}>
-                                 <input type="submit" value="Search">
-                                 <a style="color: white" href="{% url 'home:index' %}"></a>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="copyright">
-                     <div class="container">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <p>The Geek Zone © 2022 All Rights Reserved.</a></p>
-                           </div>
-                        </div>
-                     </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <p>The Geek Zone © 2022 All Rights Reserved.</a></p>
                   </div>
                </div>
             </footer>
