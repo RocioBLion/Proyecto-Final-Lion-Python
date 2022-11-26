@@ -8,7 +8,7 @@ from django.shortcuts import render
 from home.forms import UserRegisterForm
 from home.forms import UserUpdateForm
 from computer.models import Computer
-from django.contrib.auth.forms import AuthenticationForm ,UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 from home.forms import AvatarForm
@@ -27,26 +27,7 @@ def index(request):
         template_name="home/index.html",
     ) 
     
-def search(request):
-    search_param = request.GET["search_param"]
-    print("search: ", search_param)
-    context_dict = dict()
-    if search_param:
-        query = Q(name__contains=search_param)
-        query.add(Q(code__contains=search_param), Q.OR)
-        computers = Computer.objects.filter(query)
-        
-        context_dict.update(
-            {
-                "computers": computers,
-                "search_param": search_param,
-            }
-        )
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="home/index.html",
-    )
+
     
 def avatar_load(request):
     if request.method == "POST":
