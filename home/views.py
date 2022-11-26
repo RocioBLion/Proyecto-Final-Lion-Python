@@ -72,19 +72,21 @@ def search(request):
     #)
 
 def register(request):
-    form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
+    
     if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        #form = UserRegisterForm(request.POST)
         if form.is_valid():
+
+            username = form.cleaned_data['username']
             form.save()
-            messages.success(request, "Usuario creado exitosamente!")
-            return redirect("login")
+            return render(request,"register.html", {"mensaje":"Usuario Creado :)"})
 
-    return render(
-        request=request,
-        context={"form": form},
-        template_name="registration/register.html",
-    )
+    else:
+        form = UserCreationForm()
+        #form = UserRegistrationForm()
 
+    return render(request,"register.html" , {"form":form})
 
 @login_required
 def user_update(request):
@@ -99,7 +101,7 @@ def user_update(request):
     return render(
         request=request,
         context={"form": form},
-        template_name="registration/user_form.html",
+        template_name="user_form.html",
     )        
 
 
