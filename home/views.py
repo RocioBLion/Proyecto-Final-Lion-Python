@@ -80,13 +80,13 @@ def register(request):
 
             username = form.cleaned_data['username']
             form.save()
-            return render(request,"account_singup.html", {"mensaje":"Usuario Creado :)"})
+            return render(request,"register.html", {"mensaje":"Usuario Creado :)"})
 
     else:
         form = UserCreationForm()
         #form = UserRegistrationForm()
 
-    return render(request,"account_singup.html" , {"form":form})
+    return render(request,"register.html" , {"form":form})
 
 @login_required
 def user_update(request):
