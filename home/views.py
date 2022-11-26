@@ -62,7 +62,7 @@ def avatar_load(request):
                     os.remove(avatar.image.path)
                 avatar.image = image
             avatar.save()
-            messages.success(request, "Imagen cargada exitosamente")
+            messages.success(request, "Image uploaded successfully")
             return redirect("home:index")
 
     form = AvatarForm()
@@ -81,7 +81,7 @@ def register(request):
 
             username = form.cleaned_data['username']
             form.save()
-            return render(request,"register.html", {"mensaje":"Usuario Creado :)"})
+            return render(request,"register.html", {"mensaje":"User created :)"})
 
     else:
         form = UserCreationForm()
@@ -120,15 +120,15 @@ def login_request(request):
             if user is not None:
                 login(request, user)
 
-                return render(request,"index.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request,"index.html", {"mensaje":f"Welcome {usuario}"})
 
             else:
 
-                return render(request,"index.html", {"mensaje":"Error,datos incorrectos"})
+                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
 
         else:
 
-                return render(request,"index.html", {"mensaje":"Error,formulario erroneo"})
+                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
 
     
     form = AuthenticationForm()
