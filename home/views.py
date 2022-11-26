@@ -7,12 +7,10 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from home.forms import UserRegisterForm
 from home.forms import UserUpdateForm
-
-
-
 from computer.models import Computer
-from accessorie.models import Accessorie
-from cellphone.models import Cellphone
+from django.contrib.auth.forms import AuthenticationForm ,UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
 from home.forms import AvatarForm
 from home.models import Avatar
 
@@ -37,18 +35,11 @@ def search(request):
         query = Q(name__contains=search_param)
         query.add(Q(code__contains=search_param), Q.OR)
         computers = Computer.objects.filter(query)
-        accessories = Accessorie.objects.filter(query)
-        cellphones = Cellphone.objects.filter(query)
         
         context_dict.update(
             {
                 "computers": computers,
                 "search_param": search_param,
-                "accessories": accessories,
-                "search_param": search_param,
-                "cellphones": cellphones,
-                "search_param": search_param,
-            
             }
         )
     return render(
@@ -82,19 +73,21 @@ def avatar_load(request):
     )
 
 def register(request):
-    form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
+    
     if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        #form = UserRegisterForm(request.POST)
         if form.is_valid():
+
+            username = form.cleaned_data['username']
             form.save()
-            messages.success(request, "Usuario creado exitosamente!")
-            return redirect("login")
+            return render(request,"register.html", {"mensaje":"Usuario Creado :)"})
 
-    return render(
-        request=request,
-        context={"form": form},
-        template_name="registration/register.html",
-    )
+    else:
+        form = UserCreationForm()
+        #form = UserRegistrationForm()
 
+    return render(request,"register.html" , {"form":form})
 
 @login_required
 def user_update(request):
@@ -109,5 +102,35 @@ def user_update(request):
     return render(
         request=request,
         context={"form": form},
-        template_name="registration/user_form.html",
+        template_name="user_form.html",
     )        
+
+
+def login_request(request):
+
+    if request.method =="POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
+            user = authenticate(username=user, password=contra)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request,"index.html", {"mensaje":f"Bienvenido {usuario}"})
+
+            else:
+
+                return render(request,"index.html", {"mensaje":"Error,datos incorrectos"})
+
+        else:
+
+                return render(request,"index.html", {"mensaje":"Error,formulario erroneo"})
+
+    
+    form = AuthenticationForm()
+
+    return render(request,"login.html", {'form':form})

@@ -1,100 +1,49 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ValidationError
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.shortcuts import render
 
 from cellphone.models import Cellphone
 from cellphone.forms import CellphoneForm
-from cellphone.models import Comment
-from cellphone.forms import CommentForm
 
+def create_cellphones(request):
+    if request.method == "POST":
+        cellphone_form = CellphoneForm(request.POST)
+        print("-------------------------------------+++++++++++++++++")
+        if cellphone_form.is_valid():
+            data = cellphone_form.cleaned_data
+            actual_objects = Cellphone.objects.filter(
+                brand=data["brand"], model=data["model"], description=data["description"], price=data["price"]
+            ).count()
+            print("actual_objects", actual_objects)
+            if actual_objects:
+                messages.error(
+                    request,
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} - {data['price']} ya está creado",
+                )
+            else:
+                cellphone = Cellphone(brand=data["brand"], model=data["model"],description=data["description"], price=data["price"])
+                cellphone.save()
+                messages.success(
+                    request,
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} -{data['price']} creado exitosamente!",
+                )
 
-class CellphoneListView(ListView):
-    model = Cellphone
-    paginate_by = 3
-
-
-class CellphoneDetailView(DetailView):
-    model = Cellphone
-    template_name = "cellphone/cellphone_detail.html"
-    fields = ["brand", "model", "description", "price"]
-
-    def get(self, request, pk):
-        cellphone = Cellphone.objects.get(id=pk)
-        comments = Comment.objects.filter(cellphone=cellphone).order_by("-updated_at")
-        comment_form = CommentForm()
-        context = {
-            "cellphone": cellphone,
-            "comments": comments,
-            "comment_form": comment_form,
-        }
-        return render(request, self.template_name, context)
-
-
-class CellphoneCreateView(LoginRequiredMixin, CreateView):
-    model = Cellphone
-    success_url = reverse_lazy("cellphone:cellphone-list")
-
-    form_class = CellphoneForm
-    # fields = ["name", "code", "description", "image"]
-
-    def form_valid(self, form):
-        """Filter to avoid duplicate cellphones"""
-        data = form.cleaned_data
-        form.instance.owner = self.request.user
-        actual_objects = Cellphone.objects.filter(
-            brand=data["brand"], model=data["model"], description=data["description"], price=data["price"], image=data["image"],
-        ).count()
-        if actual_objects:
-            messages.error(
-                self.request,
-                f"The Cellphone {data['brand']} - {data['model']} is already created",
+            return render(
+                request=request,
+                context={"cellphone": Cellphone.objects.all()},
+                template_name="cellphone/cellphone_list.html",
             )
-            form.add_error("name", ValidationError("invalid action"))
-            return super().form_invalid(form)
-        else:
-            messages.success(
-                self.request,
-                f"Cellphone {data['brand']} - {data['model']} successfully created",
-            )
-            return super().form_valid(form)
 
+    cellphone_form = CellphoneForm(request.POST)
+    context_dict = {"form": cellphone_form}
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="cellphone/cellphone_form.html",
+    )
 
-class CellphoneUpdateView(LoginRequiredMixin, UpdateView):
-    model = Cellphone
-    fields = ["brand", "model", "description", "price", "image"]
-
-    def get_success_url(self):
-        cellphone_id = self.kwargs["pk"]
-        return reverse_lazy("cellphone:cellphone-detail", kwargs={"pk": cellphone_id})
-
-    # def post(self):
-        # pass
-
-
-class CellphoneDeleteView(LoginRequiredMixin, DeleteView):
-    model = Cellphone
-    success_url = reverse_lazy("cellphone:cellphone-list")
-
-
-class CommentCreateView(LoginRequiredMixin, CreateView):
-    def post(self, request, pk):
-        cellphone = get_object_or_404(Cellphone, id=pk)
-        comment = Comment(
-            text=request.POST["comment_text"], owner=request.user, cellphone=cellphone
-        )
-        comment.save()
-        return redirect(reverse("cellphone:cellphone-detail", kwargs={"pk": pk}))
-
-
-class CommentDeleteView(LoginRequiredMixin, DeleteView):
-    model = Comment
-
-    def get_success_url(self):
-        cellphone = self.object.cellphone
-        return reverse("cellphone:cellphone-detail", kwargs={"pk": cellphone.id})
-
+def cellphones(request):
+    return render(
+        request=request,
+        context={"accessories": Cellphone.objects.all()},
+        template_name="accessorie/accessorie_list.html",
+    )

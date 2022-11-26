@@ -1,65 +1,49 @@
 from django import forms
-from ckeditor.widgets import CKEditorWidget
 
 from cellphone.models import Cellphone
 
-class CellphoneForm(forms.ModelForm):
+class CellphoneForm(forms.Form):
     brand = forms.CharField(
-        label="Cellphone brand",
-        max_length=40,
+        label="Brand:",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "cellphone-brand",
-                "placeholder": "Cellphone brand",
+                "placeholder": "Brand",
                 "required": "True",
             }
         ),
     )
-
-    model = forms.IntegerField(
+    model = forms.CharField(
         label="Model:",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "cellphone-model",
-                "placeholder": "Cellphone model",
+                "placeholder": "Model",
                 "required": "True",
             }
         ),
-    )
-
+    )    
     description = forms.CharField(
         label="Description:",
         required=False,
-        widget=CKEditorWidget(),
-    )
-
-    image = forms.ImageField()
-
-    class Meta:
-        model = Cellphone
-        fields = ["brand", "model", "description", "price"]
-
-
-class CommentForm(forms.Form):
-    comment_text = forms.CharField(
-        label="",
-        required=False,
-        max_length=500,
-        min_length=10,
-        strip=True,
-        widget=forms.Textarea(
+        widget=forms.TextInput(
             attrs={
-                "class": "comment-text",
-                "placeholder": "Enter a comment...",
+                "class": "cellphone-description",
+                "placeholder": "Characteristics",
                 "required": "True",
-                "max_length": 500,
-                "min_length": 10,
-                "rows": 2,
-                "cols": 10,
-                "style":"min-width: 100%",
             }
         ),
-    )
-       
+    )    
+    price = forms.IntegerField(
+        label="Price:",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "cellphone-price",
+                "placeholder": "Value",
+                "required": "True",
+            }
+        ),
+    )     
