@@ -11,4 +11,5 @@ urlpatterns = [
     path("computer/<int:pk>/delete/", views.ComputerDeleteView.as_view(), name="computer-delete"),
     path("comment/<int:pk>/add/", views.CommentCreateView.as_view(), name="comment-create"),
     path("comment/<int:pk>/delete/", views.CommentDeleteView.as_view(), name="comment-delete"),
+    path("search/", views.search, name="search"),
 ]
