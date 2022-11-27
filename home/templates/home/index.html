@@ -79,10 +79,13 @@
                               <a class="nav-link" href="static/home/accessorie.html">Accessories</a>
                            </li>
                            </li>
-                           <!-- </li> 
-                           <li class="nav-item d_none">
-                              <a class="nav-link" href="{% static 'home/login.html' %}">Login</a>  
-                           </li> -->
+                           </li> 
+                           <li class="nav-item">
+                              {% if not avatar_url %}
+                              <a class="nav-link" href="{% url 'home:avatar-load' %}">Upload avatar</a>  
+                           </li>
+                           {% endif %}   
+                           <!-- <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a> -->
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'home:user-update' %}">User update</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out - {{ user.username }}</a></li>
@@ -100,9 +103,9 @@
                    <div class="row gx-4 gx-lg-5 justify-content-center">
                        <div class="col-md-10 col-lg-8 col-xl-7">
                            <div class="site-heading">
-                              <h2>Welcome!</h4>
+                              <h3>Welcome!</h3>
                                {% if user.is_authenticated %}
-                                   <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                                   <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                                {% else %}
                                    <!-- <h1>the Geek Zone</h1> -->
                                {% endif %}
@@ -112,10 +115,10 @@
                            </div>
                        </div>
                    </div>
-                   <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> -->
+                   <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> 
                    {% if not avatar_url %}
                        <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a>
-                   {% endif %}
+                   {% endif %} -->
                </div>
            </header>
            {% endblock %}
