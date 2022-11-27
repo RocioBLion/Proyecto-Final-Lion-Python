@@ -79,12 +79,6 @@
                               <a class="nav-link" href="static/home/accessorie.html">Accessories</a>
                            </li>
                            </li>
-<<<<<<< HEAD
-                            </li> 
-                           <li class="nav-item d_none">
-                              <a class="nav-link" href="{% static 'home/login.html' %}">Login</a>  
-                           </li> -->
-=======
                            </li> 
                            <li class="nav-item">
                               {% if not avatar_url %}
@@ -92,7 +86,6 @@
                            </li>
                            {% endif %}   
                            <!-- <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a> -->
->>>>>>> c518f7cfd3cfd439b48b6998ea590fbcd2e9cc15
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'home:user-update' %}">User update</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out - {{ user.username }}</a></li>
