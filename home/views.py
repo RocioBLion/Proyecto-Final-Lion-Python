@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.shortcuts import render
-from home.forms import UserRegisterForm
-from home.forms import UserUpdateForm
+from home.forms import  UserAccountsSingupForm
+from home.forms import UserAccountsProfileForm
 from computer.models import Computer
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -74,33 +74,33 @@ def avatar_load(request):
         template_name="home/avatar_form.html",
     )
 
-def register(request):
+def accounts_singup(request):
     
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        #form = UserRegisterForm(request.POST)
+        #form = UserAccountsSingupForm(request.POST)
         if form.is_valid():
 
             username = form.cleaned_data['username']
             form.save()
-            return render(request,"register.html", {"mensaje":"User created :)"})
+            return render(request,"accounts-singup.html", {"mensaje":"User created :)"})
 
     else:
         form = UserCreationForm()
         #form = UserRegistrationForm()
 
-    return render(request,"register.html" , {"form":form})
+    return render(request,"accounts-singup.html" , {"form":form})
 
 @login_required
-def user_update(request):
+def accounts_profile(request):
     user = request.user
     if request.method == "POST":
-        form = UserUpdateForm(request.POST, instance=request.user)
+        form = UserAccountsProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect("home:index")
 
-    form = UserUpdateForm(model_to_dict(user))
+    form = UserAccountsProfileForm(model_to_dict(user))
     return render(
         request=request,
         context={"form": form},

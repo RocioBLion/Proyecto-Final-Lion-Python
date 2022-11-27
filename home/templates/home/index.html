@@ -87,7 +87,7 @@
                            {% endif %}   
                            <!-- <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a> -->
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home:user-update' %}">User update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home:accounts-profile' %}">User update</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out - {{ user.username }}</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>

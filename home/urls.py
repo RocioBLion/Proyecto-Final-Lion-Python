@@ -8,8 +8,8 @@ app_name = "home"
 urlpatterns = [
     path('accounts/login', views.login_request, name="Login"),
     path("search/", views.search, name="search"),
-    path('accounts/singup', views.register, name='user-register'),
-    path('accounts/profile', views.user_update, name='user-update'),
+    path('accounts/singup', views.accounts_singup, name='accounts-singup'),
+    path('accounts/profile', views.accounts_profile, name='accounts-profile'),
     path("", view=views.index, name="index"),
     path('avatar/load', views.avatar_load, name='avatar-load'),
     path(
