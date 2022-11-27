@@ -42,7 +42,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-15 col-lg-16 col-xl-14">
                     <div class="site-heading">
-                        <h1>List of Computers</h1>
+                     <h2 style="color:hsl(200, 73%, 44%);">List of Computers</h2>
                     </div>
                 </div>
             </div>
@@ -68,8 +68,35 @@
           <!-- Divider-->
             <hr class="my-4" />
          {% endfor %}
-      {% endblock %}  
-
+         {% endblock %}  
+      
+   {% block pagination %}
+      <!--Pagination Class Based Views-->
+   {% if is_paginated %}
+      <div class="container p-4">
+          <div class="pagination justify-content-center">
+              <span class="step-links">
+                  {% if page_obj.has_previous %}
+                      <a href="?page=1">&laquo; first</a> |
+                      <a href="?page={{ computer_list.previous_page_number }}">previous</a> |
+                  {% endif %}
+      
+                  {% if page_obj.paginator.num_pages > 1 %}
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                  </span>
+                  {% endif %}
+      
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </span>
+          </div>
+      </div>
+      {% endif %}
+      <!--end of Pagination-->
+  {% endblock %}
       <footer>
          <div class="footer">
             <div class="container">
@@ -91,8 +118,7 @@
                         <li>To connect with us: admin@coderhouse.com</li>
                         <li>From 8 am to 8pm  </li>
                      </ul>
-                  </div>
-                  
+                  </div>    
                </div>
             </div>
             <div class="copyright">
