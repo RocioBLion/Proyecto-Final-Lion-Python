@@ -92,19 +92,7 @@
                         <li>From 8 am to 8pm  </li>
                      </ul>
                   </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <h3>What are you're looking for?</h3>
-                     <form action="{% url 'computer:search' %}" method="GET">
-                        <div>
-                           <input type="text" name="search_param" id="brand_model_or_price" placeholder="Search.."
-                           {% if search_param %} value="{{ search_param }}" {% endif %}
-                           >
-                           <input type="submit" value="Search">
-                           <a style="color: white" href="{% url 'computer:computer-list' %}"><i class="fa fa-search"></i></a>
-                        </div>
-                     </form>
-                     </div>
-                  </div>
+                  
                </div>
             </div>
             <div class="copyright">

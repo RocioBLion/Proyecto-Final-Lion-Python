@@ -46,8 +46,6 @@
       <div class="loader_bg">
          <div class="loader"><img src="{% static 'computer/images/loading.gif'%}" type="image/gif" alt="#" /></div>
       </div>
-
-
       <!-- end loader -->
       <!-- header -->
       {% block my_pyme_header %}
@@ -70,7 +68,7 @@
             {% csrf_token %}
             {{ form.media }} <!-- ckeditor-->
             {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Guardar curso" />
+            <input type="submit" class="btn btn-primary" value="Save computer" />
         </form>
     </div>
     <!-- Divider-->
