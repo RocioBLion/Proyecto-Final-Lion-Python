@@ -371,6 +371,8 @@
       </div>
    </div>
    </div>
+
+   
    <!-- end products -->
    <!-- laptop  section -->
    <div class="laptop">
@@ -392,6 +394,63 @@
       </div>
    </div>
    </div>
+   <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              {% if messages %}
+                  {% for message in messages %}
+                      <div class="alert {{ message.tags }}" role="alert">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+                  <!-- Divider-->
+                  <hr class="my-4" />
+              {% endif %}
+          </div>
+      </div>
+  </div>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+   <div class="row gx-4 gx-lg-5 justify-content-center">
+       <div class="col-md-10 col-lg-8 col-xl-7">
+           <!-- Post preview-->
+           {% block my_blog_content %}
+
+           <!-- Buscador -->
+           <h2>Buscador</h2>
+           <form action="{% url 'home:search' %}" method="GET">
+               <div>
+                   <input type="text" name="search_param" id="course_code_or_name" placeholder="Buscar.."
+                   {% if search_param %} value="{{ search_param }}" {% endif %}
+                   >
+                   <input type="submit" value="Search">
+                   <a style="color: blue" href="{% url 'home:index' %}"><i class="fa fa-undo"></i></a>
+               </div>
+           </form>
+           <!-- Divider-->
+           <hr class="my-4" />
+
+         
+           {% if computers %}
+           {% for computers in computers %}
+               <!-- Post preview-->
+               <div class="post-preview">
+                   <a href="{% url 'computer:computer-detail' computer.id %}">
+                       <h2 class="post-title">This is the computer {{ computer.model }}</h2>
+                       <h3 class="post-subtitle">Que tiene el código: {{ computer.brand }}</h3>
+                   </a>
+                   <p class="post-meta">
+                       Creado por
+                       <span style="color: #0b4956;" href="">{{ computer.owner.username }}</span>
+                       ( {{ computer.created_at }} )
+                   </p>
+               </div>
+               <!-- Divider-->
+               <hr class="my-4" />
+           {% endfor %}
+           {% endif %}
+           {% endblock %}
    <!-- end laptop  section -->
    <!-- customer -->
    <div class="customer">
