@@ -93,6 +93,17 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
                         {% endif %}
                         </ul> 
+                        <div class="site-heading">
+                              <h2>Welcome!</h2>
+                            {% if user.is_authenticated %}
+                              <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                            {% else %}
+                                <!-- <h1>the Geek Zone</h1> -->
+                            {% endif %}
+                            {% if avatar_url %}
+                              <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
+                            {% endif %}
+                        </div>
                      </div>
                   </nav>
                </div>
@@ -102,16 +113,16 @@
                <div class="container position-relative px-4 px-lg-5">
                    <div class="row gx-4 gx-lg-5 justify-content-center">
                        <div class="col-md-10 col-lg-8 col-xl-7">
-                           <div class="site-heading">
+                           <!-- <div class="site-heading">
                               <h3>Welcome!</h3>
                                {% if user.is_authenticated %}
                                    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                                {% else %}
-                                   <!-- <h1>the Geek Zone</h1> -->
+                                   <h1>the Geek Zone</h1> 
                                {% endif %}
                                {% if avatar_url %}
                                    <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
-                               {% endif %}
+                               {% endif %} -->
                            </div>
                        </div>
                    </div>
