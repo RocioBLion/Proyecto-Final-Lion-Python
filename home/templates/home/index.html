@@ -73,10 +73,10 @@
                               <a class="nav-link" href="{% url 'computer:computer-list' %}">Computers</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="{% url 'cellphone:cellphone-list' %}">Cellphones</a>
+                              <a class="nav-link" href="static/home/cellphone.html">Cellphones</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" href="{% url 'accessorie:accessorie-list' %}">Accessories</a>
+                              <a class="nav-link" href="static/home/accessorie.html">Accessories</a>
                            </li>
                            </li>
                            <!-- </li> 
@@ -104,6 +104,7 @@
                                {% if user.is_authenticated %}
                                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
                                {% else %}
+                                   <!-- <h1>the Geek Zone</h1> -->
                                {% endif %}
                                {% if avatar_url %}
                                    <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
