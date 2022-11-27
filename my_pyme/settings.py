@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accessorie',
     'computer',
     'home',
+    
 ]
 
 MIDDLEWARE = [

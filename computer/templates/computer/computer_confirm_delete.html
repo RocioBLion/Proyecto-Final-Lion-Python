@@ -40,6 +40,7 @@
       <!-- header -->
       {% block my_pyme_header %}
       <header>
+      <header class="masthead" style="background-image: url('/static/home/assets/img/banner.jpg')">
          <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-15 col-lg-16 col-xl-14">
@@ -55,7 +56,7 @@
       
       {% block my_pyme_content %}
       
-      <h1>Are you sure you want to delete this computer: {{ computer.model }}?</h1>
+      <h1>Are you sure you want to delete this computer: {{ computer.model }} ?</h1>
       <p>{{ comment.text }}</p>
 
       <form action="" method="POST">

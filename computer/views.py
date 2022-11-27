@@ -22,7 +22,7 @@ class ComputerListView(ListView):
 class ComputerDetailView(DetailView):
     model = Computer
     template_name = "computer/computer_detail.html"
-    fields = ["brand", "model", "description", "price"]
+    fields = ["model", "brand", "description", "price", "image"]
 
     def get(self, request, pk):
         computer = Computer.objects.get(id=pk)
@@ -41,7 +41,7 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("computer:computer-list")
 
     form_class = ComputerForm
-    # fields = ["name", "code", "description", "image"]
+    # fields = ["model", "brand", "description", "price", "image"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate computers"""
