@@ -11,20 +11,20 @@ def create_cellphones(request):
         if cellphone_form.is_valid():
             data = cellphone_form.cleaned_data
             actual_objects = Cellphone.objects.filter(
-                brand=data["brand"], model=data["model"], description=data["description"], price=data["price"]
+                brand=data["brand"], model=data["model"], description=data["description"]
             ).count()
             print("actual_objects", actual_objects)
             if actual_objects:
                 messages.error(
                     request,
-                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} - {data['price']} ya está creado",
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} ya está creado",
                 )
             else:
-                cellphone = Cellphone(brand=data["brand"], model=data["model"],description=data["description"], price=data["price"])
+                cellphone = Cellphone(brand=data["brand"], model=data["model"],description=data["description"],)
                 cellphone.save()
                 messages.success(
                     request,
-                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} -{data['price']} creado exitosamente!",
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']}  creado exitosamente!",
                 )
 
             return render(

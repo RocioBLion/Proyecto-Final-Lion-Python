@@ -1,130 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>  
+{% extends "home/index.html" %}
+{% load static %}
 
-    {% extends "home/index.html" %}  
-    {% load static %}
-
-      <!-- ckeditor-->
-    {% block extrahead %}
-    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-    {{ block.super }}
-    {% endblock %}
+<!-- ckeditor-->
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
 <!-- ckeditor-->
 
-    {% block my_pyme_title %}
-    Computer Create-Update
-    {% endblock %}
-      
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>The Geek Zone</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="{% static 'computer/css/bootstrap.min.css'%}">
-      <!-- style css -->
-      <link rel="stylesheet" href="{% static 'computer/css/style.css'%}">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="{% static 'computer/css/responsive.css'%}">
-      <!-- fevicon -->
-      <link rel="icon" href="{% static 'computer/images/fevicon.gif'%}" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{% static 'computer/css/jquery.mCustomScrollbar.min.css'%}">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-   </head>
-   <!-- body -->
-   <body class="main-layout inner_position computer_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="{% static 'computer/images/loading.gif'%}" type="image/gif" alt="#" /></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      {% block my_pyme_header %}
-      <header>
-      <header class="masthead" style="background-image: url('/static/home/assets/img/'banner.jpg')">
-         <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-15 col-lg-16 col-xl-14">
-                    <div class="site-heading">
-                        <h2>Formulario para guardar/editar</h2>
-                    </div>
+{% block my_pyme_title %}
+Computer Create and Update
+{% endblock %}
+
+{% block my_pyme_header %}
+<header class="masthead" style="background-image: url('/static/home/assets/img/about-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-15 col-lg-16 col-xl-14">
+                <div class="site-heading">
+                    <h2>Form for save and edit Computers</h2>
+                    <span class="subheading">The Geek Zone</span>
                 </div>
             </div>
         </div>
-      </header>
-      {% endblock %}
-      
-      {% block my_pyme_content %}
+    </div>
+</header>
+{% endblock %}
+
+{% block my_pyme_content %}
     <div>
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }} <!-- ckeditor-->
             {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Save computer" />
+            <input type="submit" class="btn btn-primary" value="Save Computer" />
         </form>
     </div>
     <!-- Divider-->
     <hr class="my-4" />
-      {% endblock %}
-
-      <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <img class="logo1" src="{% static 'computer/images/robotin.png' %}" alt="#"/>
-                     <ul class="social_icon">
-                        <li><a href="/"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                        <li><a href="/"><i class="fa fa-github" aria-hidden="true"></i></a></li>             
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <h3>About Us</h3>
-                     <ul class="about_us">
-                        <li>The Geek Zone, is an Argentine company with more than 10 years in the market. Providing you with the best quality products in electronics.<br> 
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                     <h3>Contact Us</h3>
-                     <ul class="conta">
-                        <li>To connect with us: admin@coderhouse.com</li>
-                        <li>From 8 am to 8pm  </li>
-                     </ul>
-                  </div>
-                  
-               </div>
-            </div>
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <p>© 2022 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
-
-      <script src="{% static 'computer/js/jquery.min.js'%}"></script>
-      <script src="{% static 'computer/js/popper.min.js'%}"></script>
-      <script src="{% static 'computer/js/bootstrap.bundle.min.js'%}"></script>
-      <script src="{% static 'computer/js/jquery-3.0.0.min.js'%}"></script>
-      <!-- sidebar -->
-      <script src="{% static 'computer/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
-      <script src="{% static 'computer/js/custom.js'%}"></script>
-      
-   </body>
-</html>
-
-
-
+{% endblock %}

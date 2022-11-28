@@ -7,10 +7,11 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from computer.models import Computer
+from computer.forms import CommentForm
 from computer.forms import ComputerForm
 from computer.models import Comment
-from computer.forms import CommentForm
+from computer.models import Computer
+
 
 
 class ComputerListView(ListView):
@@ -21,7 +22,7 @@ class ComputerListView(ListView):
 class ComputerDetailView(DetailView):
     model = Computer
     template_name = "computer/computer_detail.html"
-    fields = ["model", "brand", "description", "image"]
+    fields = ["model", "brand", "description", "price", "image"]
 
     def get(self, request, pk):
         computer = Computer.objects.get(id=pk)
@@ -37,39 +38,40 @@ class ComputerDetailView(DetailView):
 
 class ComputerCreateView(LoginRequiredMixin, CreateView):
     model = Computer
-    success_url = reverse_lazy("computer:computer-list")
+    success_url = reverse_lazy("computere:computer-list")
 
     form_class = ComputerForm
     # fields = ["model", "brand", "description", "price", "image"]
 
     def form_valid(self, form):
-        """Filter to avoid duplicate computers"""
+        """Filter to avoid duplicate courses"""
         data = form.cleaned_data
         form.instance.owner = self.request.user
         actual_objects = Computer.objects.filter(
-            brand=data["brand"], model=data["model"]
+            model=data["model"], brand=data["brand"]
         ).count()
         if actual_objects:
             messages.error(
                 self.request,
-                f"The Computer {data['brand']} - {data['model']} is already created",
+                f"The computer {data['model']} - {data['brand']} is already created",
             )
-            form.add_error("name", ValidationError("invalid action"))
+            form.add_error("name", ValidationError("Invalid action"))
             return super().form_invalid(form)
         else:
             messages.success(
                 self.request,
-                f"Computer {data['brand']} - {data['model']} successfully created",
+                f"Computer {data['model']} - {data['brand']} sucessfuly created!",
             )
             return super().form_valid(form)
 
+
 class ComputerUpdateView(LoginRequiredMixin, UpdateView):
     model = Computer
-    fields = ["brand", "model", "description", "image"]
+    fields = ["model", "brand", "description", "image"]
 
     def get_success_url(self):
         computer_id = self.kwargs["pk"]
-        return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
+        return reverse_lazy("course:course-detail", kwargs={"pk": computer_id})
 
     def post(self):
         pass
@@ -87,13 +89,12 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             text=request.POST["comment_text"], owner=request.user, computer=computer
         )
         comment.save()
-        return redirect(reverse("computer:computer-detail", kwargs={"pk": pk}))
+        return redirect(reverse("computer:course-detail", kwargs={"pk": pk}))
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
 
     def get_success_url(self):
-        computer = self.object.computer
-        return reverse("computer:computer-detail", kwargs={"pk": computer.id})
-
+        course = self.object.course
+        return reverse("course:course-detail", kwargs={"pk": course.id})

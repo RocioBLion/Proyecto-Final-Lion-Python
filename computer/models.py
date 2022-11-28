@@ -3,8 +3,6 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 from ckeditor.fields import RichTextField
 
-
-
 class Computer(models.Model):
     brand= models.CharField(max_length=40, null=False, blank=False)
     model = models.CharField(max_length=40, null=False, blank=False)

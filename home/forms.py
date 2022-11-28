@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 from home.models import Avatar
 
-class UserAccountsSingupForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
+
     username = forms.CharField(label="username", min_length=3)
     first_name = forms.CharField(label="Nombre", min_length=3)
     last_name = forms.CharField(label="Apellido", min_length=3)
@@ -24,7 +25,7 @@ class UserAccountsSingupForm(UserCreationForm):
         ]
 
 
-class UserAccountsProfileForm(UserChangeForm):
+class UserUpdateForm(UserChangeForm):
     password = None
 
     class Meta:

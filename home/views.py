@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.shortcuts import render
-from home.forms import  UserAccountsSingupForm
-from home.forms import UserAccountsProfileForm
+from home.forms import  UserRegisterForm
+from home.forms import UserUpdateForm
 from computer.models import Computer
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -49,7 +49,39 @@ def search(request):
         template_name="home/index.html",
     )
     
-    
+def register(request):
+    form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Usuario creado exitosamente!")
+            return redirect("login")
+
+    return render(
+        request=request,
+        context={"form": form},
+        template_name="registration/register.html",
+    )
+
+
+@login_required
+def user_update(request):
+    user = request.user
+    if request.method == "POST":
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("home:index")
+
+    form = UserUpdateForm(model_to_dict(user))
+    return render(
+        request=request,
+        context={"form": form},
+        template_name="registration/user_form.html",
+    )
+
+
+@login_required
 def avatar_load(request):
     if request.method == "POST":
         form = AvatarForm(request.POST, request.FILES)
@@ -64,7 +96,7 @@ def avatar_load(request):
                     os.remove(avatar.image.path)
                 avatar.image = image
             avatar.save()
-            messages.success(request, "Image uploaded successfully")
+            messages.success(request, "Imagen cargada exitosamente")
             return redirect("home:index")
 
     form = AvatarForm()
@@ -73,66 +105,3 @@ def avatar_load(request):
         context={"form": form},
         template_name="home/avatar_form.html",
     )
-
-def accounts_singup(request):
-    
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        #form = UserAccountsSingupForm(request.POST)
-        if form.is_valid():
-
-            username = form.cleaned_data['username']
-            form.save()
-            return render(request,"accounts-singup.html", {"mensaje":"User created :)"})
-
-    else:
-        form = UserCreationForm()
-        #form = UserRegistrationForm()
-
-    return render(request,"accounts-singup.html" , {"form":form})
-
-@login_required
-def accounts_profile(request):
-    user = request.user
-    if request.method == "POST":
-        form = UserAccountsProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect("home:index")
-
-    form = UserAccountsProfileForm(model_to_dict(user))
-    return render(
-        request=request,
-        context={"form": form},
-        template_name="user_form.html",
-    )        
-
-
-def login_request(request):
-
-    if request.method =="POST":
-        form = AuthenticationForm(request, data = request.POST)
-
-        if form.is_valid():
-            usuario = form.cleaned_data.get('username')
-            contra = form.cleaned_data.get('password')
-
-            user = authenticate(username=user, password=contra)
-
-            if user is not None:
-                login(request, user)
-
-                return render(request,"index.html", {"mensaje":f"Welcome {usuario}"})
-
-            else:
-
-                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
-
-        else:
-
-                return render(request,"index.html", {"mensaje":"Error, incorrect data"})
-
-    
-    form = AuthenticationForm()
-
-    return render(request,"login.html", {'form':form})
