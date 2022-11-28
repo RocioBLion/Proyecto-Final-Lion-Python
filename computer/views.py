@@ -38,13 +38,13 @@ class ComputerDetailView(DetailView):
 
 class ComputerCreateView(LoginRequiredMixin, CreateView):
     model = Computer
-    success_url = reverse_lazy("computere:computer-list")
+    success_url = reverse_lazy("computer:computer-list")
 
     form_class = ComputerForm
     # fields = ["model", "brand", "description", "price", "image"]
 
     def form_valid(self, form):
-        """Filter to avoid duplicate courses"""
+        """Filter to avoid duplicate computers"""
         data = form.cleaned_data
         form.instance.owner = self.request.user
         actual_objects = Computer.objects.filter(
@@ -71,7 +71,7 @@ class ComputerUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         computer_id = self.kwargs["pk"]
-        return reverse_lazy("course:course-detail", kwargs={"pk": computer_id})
+        return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
 
     def post(self):
         pass
@@ -89,12 +89,12 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             text=request.POST["comment_text"], owner=request.user, computer=computer
         )
         comment.save()
-        return redirect(reverse("computer:course-detail", kwargs={"pk": pk}))
+        return redirect(reverse("computer:computer-detail", kwargs={"pk": pk}))
 
 
 class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
 
     def get_success_url(self):
-        course = self.object.course
-        return reverse("course:course-detail", kwargs={"pk": course.id})
+        computer = self.object.computer
+        return reverse("computer:computer-detail", kwargs={"pk": computer.id})

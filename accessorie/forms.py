@@ -36,4 +36,14 @@ class AccessorieForm(forms.Form):
             }
         ),
     )    
-    
+    price = forms.IntegerField(
+        label="Price:",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "accessorie-price",
+                "placeholder": "Value",
+                "required": "True",
+            }
+        ),
+    )     

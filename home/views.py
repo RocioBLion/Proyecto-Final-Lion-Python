@@ -26,7 +26,14 @@ def index(request):
         context={},
         template_name="home/index.html",
     ) 
-    
+
+def about(request):
+
+    return render(request, 'home/about.html', {"title": "About us"})
+ 
+def post(request):
+
+    return render(request, 'home/post.html', {"title": "Posts"})
 
 def search(request):
     search_param = request.GET["search_param"]

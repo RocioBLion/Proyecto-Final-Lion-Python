@@ -1,0 +1,81 @@
+# Query: price
+# ContextLines: 1
+
+25 resultados - Archivos de 8
+
+accessorie\views.py:
+  13              actual_objects = Accessorie.objects.filter(
+  14:                 brand=data["brand"], model=data["model"], description=data["description"],
+  15              ).count()
+
+  19                      request,
+  20:                     f"Accessorie {data['brand']} - {data['model']} - {data['description']} -  ya está creado",
+  21                  )
+  22              else:
+  23:                 accessorie = Accessorie(brand=data["brand"], model=data["model"],description=data["description"], )
+  24                  accessorie.save()
+
+  26                      request,
+  27:                     f"Accessorie {data['brand']} - {data['model']} - {data['description']}  creado exitosamente!",
+  28                  )
+
+accessorie\static\accessorie\css\icomoon.css:
+  193  }
+  194: .icon-price-tag:before {
+  195      content: "\e935";
+  196  }
+  197: .icon-price-tags:before {
+  198      content: "\e936";
+
+accessorie\static\accessorie\js\revolution\css\layers.css:
+   935  
+   936: .tp-caption.Restaurant-Price,.Restaurant-Price
+   937  {
+
+  3540      }
+  3541:     .tp-caption.Woo-PriceLarge,
+  3542:     .Woo-PriceLarge {
+  3543          color: rgba(0, 0, 0, 1.00);
+
+  3651      }
+  3652:     .tp-caption.Woo-PriceLarge,
+  3653:     .Woo-PriceLarge {
+  3654          color: rgba(0, 0, 0, 1.00);
+
+accessorie\static\accessorie\js\revolution\css\navigation.css:
+  1206      } 
+  1207: .hades .tp-tab-price
+  1208   {
+
+cellphone\static\cellphone\css\icomoon.css:
+  193  }
+  194: .icon-price-tag:before {
+  195      content: "\e935";
+  196  }
+  197: .icon-price-tags:before {
+  198      content: "\e936";
+
+cellphone\static\cellphone\js\revolution\css\layers.css:
+   935  
+   936: .tp-caption.Restaurant-Price,.Restaurant-Price
+   937  {
+
+  3540      }
+  3541:     .tp-caption.Woo-PriceLarge,
+  3542:     .Woo-PriceLarge {
+  3543          color: rgba(0, 0, 0, 1.00);
+
+  3651      }
+  3652:     .tp-caption.Woo-PriceLarge,
+  3653:     .Woo-PriceLarge {
+  3654          color: rgba(0, 0, 0, 1.00);
+
+cellphone\static\cellphone\js\revolution\css\navigation.css:
+  1206      } 
+  1207: .hades .tp-tab-price
+  1208   {
+
+computer\migrations\0003_alter_computer_unique_together.py:
+  14              name='computer',
+  15:             unique_together={('brand', 'model', 'description',)},
+  16          ),
