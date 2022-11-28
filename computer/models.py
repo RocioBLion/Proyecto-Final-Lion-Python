@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 
 
 class Computer(models.Model):
+    id = models.AutoField(primary_key=True)
     brand= models.CharField(max_length=40, null=False, blank=False)
     model = models.CharField(max_length=40, null=False, blank=False)
     description = RichTextField(null=True, blank=True)
@@ -19,16 +20,10 @@ class Computer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = (
-            "brand",
-            "model",
-            "description",
-            "price",
-        )
-        ordering = ["-created_at"]
+        ordering = ["id"]
 
     def __str__(self):
-        return f"Computer: {self.brand} - {self.model} - {self.description} - {self.price}"
+        return f"Computer: {self.brand} - {self.model}"
 
 
 class Comment(models.Model):

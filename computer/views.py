@@ -41,7 +41,7 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("computer:computer-list")
 
     form_class = ComputerForm
-    # fields = ["name", "code", "description", "image"]
+    # fields = ["model", "brand", "description", "price", "image"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate computers"""

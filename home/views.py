@@ -33,8 +33,8 @@ def search(request):
     print("search: ", search_param)
     context_dict = dict()
     if search_param:
-        query = Q(name__contains=search_param)
-        query.add(Q(code__contains=search_param), Q.OR)
+        query = Q(brand__contains=search_param)
+        query.add(Q(model__contains=search_param), Q.OR)
         computers = Computer.objects.filter(query)
         
         context_dict.update(
@@ -46,7 +46,7 @@ def search(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="computer/computer-list.html",
+        template_name="home/index.html",
     )
     
     
