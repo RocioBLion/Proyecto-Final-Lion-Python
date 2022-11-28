@@ -1,36 +1,36 @@
 {% extends "home/index.html" %}
 {% load static %}
 
-{% block Proyecto_Final_Herrera_title %}
+{% block my_pyme_title %}
 Login
 {% endblock %}
 
-{% block Proyecto_Final_Herrera_header %}
-<header class="masthead" style="background-image: url('/static/home/assets/img/home-bg.jpg')">
+{% block my_pyme_header %}
+<header class="masthead" style="background-image:  url('/static/home/assets/img/useres.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-15 col-lg-16 col-xl-14">
                 <div class="site-heading">
                     <h1>Login</h1>
-                    <span class="subheading">CoderHouse</span>
+                    <span class="subheading">The Geek Zone</span>
                 </div>
             </div>
         </div>
-        <a class="button_custom" href="{% url 'home:user-register' %}">Registrar nuevo usuario</a>
+        <a class="button_custom" href="{% url 'home:user-register' %}">Register new user</a>
     </div>
 </header>
 {% endblock %}
 
-{% block Proyecto_Final_Herrera_content %}
+{% block my_pyme_content %}
 
 {% if form.errors %}
-<p style="color: red">Combinación de username y password incorrecta, intenta de nuevo.</p>
+<p style="color: red">Username and password incorrects, try again.</p>
 {% endif %}
 
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Iniciar Sesión" />
+    <input type="submit" class="btn btn-primary" value="Login" />
 </form>
 
 {% endblock %}

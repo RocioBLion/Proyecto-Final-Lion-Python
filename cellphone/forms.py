@@ -1,6 +1,5 @@
 from django import forms
 
-
 from cellphone.models import Cellphone
 
 class CellphoneForm(forms.Form):
@@ -37,14 +36,4 @@ class CellphoneForm(forms.Form):
             }
         ),
     )    
-    price = forms.IntegerField(
-        label="Price:",
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "class": "cellphone-price",
-                "placeholder": "Value",
-                "required": "True",
-            }
-        ),
-    )        
+    

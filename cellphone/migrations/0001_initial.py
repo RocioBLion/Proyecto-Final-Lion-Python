@@ -18,7 +18,6 @@ class Migration(migrations.Migration):
                 ('brand', models.CharField(max_length=20)),
                 ('model', models.CharField(max_length=20)),
                 ('description', models.CharField(max_length=40)),
-                ('price', models.IntegerField()),
                 ('image', models.ImageField(null=True, upload_to='products')),
             ],
         ),
@@ -43,7 +42,6 @@ class Migration(migrations.Migration):
                 ('brand', models.CharField(max_length=20)),
                 ('model', models.CharField(max_length=20)),
                 ('description', models.CharField(max_length=40)),
-                ('price', models.IntegerField()),
             ],
         ),
     ]

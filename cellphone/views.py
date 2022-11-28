@@ -1,10 +1,8 @@
-from django.shortcuts import render
-
 from django.contrib import messages
+from django.shortcuts import render
 
 from cellphone.models import Cellphone
 from cellphone.forms import CellphoneForm
-
 
 def create_cellphones(request):
     if request.method == "POST":
@@ -13,20 +11,20 @@ def create_cellphones(request):
         if cellphone_form.is_valid():
             data = cellphone_form.cleaned_data
             actual_objects = Cellphone.objects.filter(
-                brand=data["brand"], model=data["model"], description=data["description"], price=data["price"]
+                brand=data["brand"], model=data["model"], description=data["description"]
             ).count()
             print("actual_objects", actual_objects)
             if actual_objects:
                 messages.error(
                     request,
-                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} - {data['price']} ya está creado",
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} ya está creado",
                 )
             else:
-                cellphone = Cellphone(brand=data["brand"], model=data["model"],description=data["description"], price=data["price"])
+                cellphone = Cellphone(brand=data["brand"], model=data["model"],description=data["description"],)
                 cellphone.save()
                 messages.success(
                     request,
-                    f"Cellphone {data['brand']} - {data['model']} - {data['description']} -{data['price']} creado exitosamente!",
+                    f"Cellphone {data['brand']} - {data['model']} - {data['description']}  creado exitosamente!",
                 )
 
             return render(
@@ -46,6 +44,6 @@ def create_cellphones(request):
 def cellphones(request):
     return render(
         request=request,
-        context={"cellphones": Cellphone.objects.all()},
-        template_name="cellphone/cellphone_list.html",
+        context={"accessories": Cellphone.objects.all()},
+        template_name="accessorie/accessorie_list.html",
     )
