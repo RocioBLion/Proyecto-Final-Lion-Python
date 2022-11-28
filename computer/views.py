@@ -6,7 +6,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.db.models import Q
 
 from computer.models import Computer
 from computer.forms import ComputerForm
@@ -22,7 +21,7 @@ class ComputerListView(ListView):
 class ComputerDetailView(DetailView):
     model = Computer
     template_name = "computer/computer_detail.html"
-    fields = ["model", "brand", "description", "price", "image"]
+    fields = ["model", "brand", "description", "image"]
 
     def get(self, request, pk):
         computer = Computer.objects.get(id=pk)
@@ -48,7 +47,7 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
         data = form.cleaned_data
         form.instance.owner = self.request.user
         actual_objects = Computer.objects.filter(
-            brand=data["brand"], model=data["model"], description=data["description"], price=data["price"], image=data["image"],
+            brand=data["brand"], model=data["model"]
         ).count()
         if actual_objects:
             messages.error(
@@ -66,14 +65,14 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
 
 class ComputerUpdateView(LoginRequiredMixin, UpdateView):
     model = Computer
-    fields = ["brand", "model", "description", "price", "image"]
+    fields = ["brand", "model", "description", "image"]
 
     def get_success_url(self):
         computer_id = self.kwargs["pk"]
         return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
 
-    # def post(self):
-        # pass
+    def post(self):
+        pass
 
 
 class ComputerDeleteView(LoginRequiredMixin, DeleteView):

@@ -1,29 +1,30 @@
-from django import forms
 from ckeditor.widgets import CKEditorWidget
+from django import forms
+
 
 from computer.models import Computer
 
 class ComputerForm(forms.ModelForm):
-    brand = forms.CharField(
-        label="Computer brand",
+    model = forms.CharField(
+        label="Computer model",
         max_length=40,
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "class": "computer-brand",
-                "placeholder": "Computer brand",
-                "required": "True",
-            }
-        ),
-    )
-
-    model = forms.IntegerField(
-        label="Model:",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "computer-model",
                 "placeholder": "Computer model",
+                "required": "True",
+            }
+        ),
+    )
+
+    brand = forms.IntegerField(
+        label="Brand:",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "computer-brand",
+                "placeholder": "Computer brand",
                 "required": "True",
             }
         ),
@@ -39,7 +40,7 @@ class ComputerForm(forms.ModelForm):
 
     class Meta:
         model = Computer
-        fields = ["brand", "model", "description", "price"]
+        fields = ["brand", "model", "description", "image"]
 
 
 class CommentForm(forms.Form):

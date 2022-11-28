@@ -22,13 +22,11 @@ class Computer(models.Model):
         unique_together = (
             "brand",
             "model",
-            "description",
-            "price",
         )
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"Computer: {self.brand} - {self.model} - {self.description} - {self.price}"
+        return f"Computer: {self.brand} - {self.model}"
 
 
 class Comment(models.Model):

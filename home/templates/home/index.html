@@ -105,6 +105,27 @@
                             {% endif %}
                         </div>
                      </div>
+                  </nav>
+               </div>
+           </nav>
+           <!-- Page Header-->
+               <div class="container position-relative px-4 px-lg-5">
+                   <div class="row gx-4 gx-lg-5 justify-content-center">
+                       <div class="col-md-10 col-lg-8 col-xl-7">
+                           <div class="site-heading">
+                               {% if user.is_authenticated %}
+                                   <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                               {% endif %}
+                               {% if avatar_url %}
+                                   <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
+                               {% endif %} 
+                           </div>
+                       </div>
+                   </div>
+                   <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> 
+                   {% if not avatar_url %}
+                       <a class="button_custom" href="{% url 'home:avatar-load' %}">Upload avatar</a>
+                   {% endif %} -->
                </div>
            </header>
    <!-- end header inner -->
@@ -389,7 +410,7 @@
    <div class="row gx-4 gx-lg-5 justify-content-center">
        <div class="col-md-10 col-lg-8 col-xl-7">
            <!-- Post preview-->
-           {% block my_blog_content %}
+           {% block my_pyme_content %}
 
            <!-- Buscador -->
            <h1 style="color:hsl(42, 94%, 60%);">Search for computers</h1>
