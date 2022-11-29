@@ -132,7 +132,6 @@
                         <hr class="my-4" />
                     {% endfor %}
                     {% endif %}
-                    {% endblock %}
 
                 <article class=masthead" style="background-image: url('/static/home/assets/img/web.png')">
                     <div class="container px-4 px-lg-5">
@@ -156,7 +155,8 @@
                         </div>
                     </div>
                 </article>
-
+                {% endblock %}
+                
                     {% block pagination %}
                         <!--Pagination Class Based Views-->
                         {% if is_paginated %}
