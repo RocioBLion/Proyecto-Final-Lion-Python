@@ -28,7 +28,6 @@
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="{% url 'home:index' %}">Home</a>
                 <a class="navbar-brand" href="{% url 'home:about' %}">About us</a>
-                <a class="navbar-brand" href="{% url 'home:post' %}">Posts</a>
                 <a class="navbar-brand" href="{% url 'computer:computer-list' %}">Computers</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -62,17 +61,11 @@
                                 <h1>The Geek Zone</h1>
                                 <span class="subheading">a blog for technology enthusiasts :)</span>
                             {% endif %}
-                            {% if avatar_url %}
-                                <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
-                            {% endif %}
 
                         </div>
                     </div>
                 </div>
                 <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> -->
-                {% if not avatar_url %}
-                    <a class="button_custom" href="{% url 'home:avatar-load' %}">Load Avatar</a>
-                {% endif %}
             </div>
         </header>
         {% endblock %}
@@ -190,28 +183,6 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <!-- <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li> -->
-                            <!-- <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-youtube-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li> -->
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
                             </li>
                         </ul>
                         <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2022</div>
