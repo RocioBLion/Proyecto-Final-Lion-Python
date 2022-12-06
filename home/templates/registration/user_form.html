@@ -23,7 +23,7 @@ Update User
 
 {% block my_pyme_content %}
 
-<h3>Usuario: {{user.username}} | Name: {{user.first_name}} {{user.last_name}}</h3>
+<h3>User: {{user.username}} | Name: {{user.first_name}} | Last Name: {{user.last_name}} | Email: {{user.email}} </h3>
 
 <form action="" method="POST">
     {% csrf_token %}
