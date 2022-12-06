@@ -18,7 +18,7 @@ class ComputerForm(forms.ModelForm):
         ),
     )
 
-    brand = forms.IntegerField(
+    brand = forms.CharField(
         label="Brand:",
         required=False,
         widget=forms.TextInput(
@@ -40,7 +40,7 @@ class ComputerForm(forms.ModelForm):
 
     class Meta:
         model = Computer
-        fields = ["brand", "model", "description", "image"]
+        fields = ["brand", "model", "description", "image", "price"]
 
 
 class CommentForm(forms.Form):
