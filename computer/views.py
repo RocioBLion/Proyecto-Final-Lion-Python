@@ -73,8 +73,6 @@ class ComputerUpdateView(LoginRequiredMixin, UpdateView):
         computer_id = self.kwargs["pk"]
         return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
 
-    def post(self):
-        pass
 
 
 class ComputerDeleteView(LoginRequiredMixin, DeleteView):

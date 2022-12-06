@@ -23,17 +23,21 @@ List of Computers
 
 
 {% block my_pyme_content %}
-    {% for computer in computer_list %}
+<div class="container px-4 px-lg-5">
+            <div class="container mt-5">
         <!-- Post preview-->
-        <div class="post-preview">
-            <a href="{% url 'computer:computer-detail' computer.id %}">
-                <h2 class="post-title">This is the Computer{{ computer.model }}</h2>
-                <h3 class="post-subtitle">Brand: {{ computer.brand }}</h3>
-            </a>
+                {% for computer in computer_list %}
+                <div class="post-preview">
+                    <a href="{% url 'computer:computer-detail' computer.id %}">
+                    <h2 class="post-title">This is the Computer {{ computer.model }}</h2>
+                    <h3 class="post-subtitle">Brand: {{ computer.brand }}</h3>
+                </a>
             <p class="post-meta">
                 Created by
                 <span style="color: #0b4956;" href="">{{ computer.owner.username }}</span>
                 ( {{ computer.created_at }} )
+            
+                <a href="{%url 'computer:computer-detail' computer.id%}">See more</a>
             </p>
         </div>
         <!-- Divider-->
