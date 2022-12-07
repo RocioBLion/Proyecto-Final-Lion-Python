@@ -12,18 +12,22 @@ Update User
             <div class="col-md-15 col-lg-16 col-xl-14">
                 <div class="site-heading">
                     <h1>Edit user</h1>
-                    <span class="subheading">The Geek Zone</span>
+                    <span class="subheading">Here you can edit your user</span>
                 </div>
             </div>
         </div>
         <a class="button_custom" href="{% url 'home:password-change' %}">Change Password</a>
+
+        <a class="button_custom" href="{% url 'home:avatar-load' %}">Load Avatar</a>
+
     </div>
 </header>
+
 {% endblock %}
 
 {% block my_pyme_content %}
 
-<h3>Usuario: {{user.username}} | Name: {{user.first_name}} {{user.last_name}}</h3>
+<h3>User: {{user.username}} | Name: {{user.first_name}} | Last Name: {{user.last_name}} | Email: {{user.email}} </h3>
 
 <form action="" method="POST">
     {% csrf_token %}

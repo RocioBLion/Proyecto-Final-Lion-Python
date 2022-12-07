@@ -28,15 +28,13 @@
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="{% url 'home:index' %}">Home</a>
                 <a class="navbar-brand" href="{% url 'home:about' %}">About us</a>
-                <a class="navbar-brand" href="{% url 'home:post' %}">Posts</a>
+                <a class="navbar-brand" href="{% url 'computer:computer-list' %}">Computers</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'computer:computer-list' %}">Computers</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accessorie:accessorie-list' %}">Information</a></li>\
                         <div class="topbar-divider d-none d-sm-block"></div>
                        
                         {% if user.is_authenticated %}
@@ -63,35 +61,24 @@
                                 <h1>The Geek Zone</h1>
                                 <span class="subheading">a blog for technology enthusiasts :)</span>
                             {% endif %}
-                            {% if avatar_url %}
-                                <a href="{% url 'home:avatar-load' %}"><img height="260px" src="{{avatar_url}}"></a>
-                            {% endif %}
+
                         </div>
                     </div>
                 </div>
                 <!-- <div style="background-color: #ffffff; width: 87%;" color>Avatar URL: {{ avatar_url }}</div> -->
-                {% if not avatar_url %}
-                    <a class="button_custom" href="{% url 'home:avatar-load' %}">Load Avatar</a>
-                {% endif %}
             </div>
         </header>
         {% endblock %}
-        <!-- Messages-->
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert {{ message.tags }}" role="alert">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                        <!-- Divider-->
-                        <hr class="my-4" />
-                    {% endif %}
-                </div>
+        {% for message in messages %}
+        <div class="container-fluid p-0">
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="True">&times;</span>
+                </button>
+                {{ message }}
             </div>
         </div>
+        {% endfor %}
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -126,6 +113,8 @@
                                 Created by
                                 <span style="color: #0b4956;" href="">{{ computer.owner.username }}</span>
                                 ( {{ computer.created_at }} )
+                            
+                                <a href="{%url 'computer:computer-detail' computer.id%}">See more</a>
                             </p>
                         </div>
                         <!-- Divider-->
@@ -194,28 +183,6 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <ul class="list-inline text-center">
                             <!-- <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li> -->
-                            <!-- <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-youtube-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li> -->
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
                             </li>
                         </ul>
                         <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2022</div>

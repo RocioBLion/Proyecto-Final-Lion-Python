@@ -31,10 +31,6 @@ def about(request):
 
     return render(request, 'home/about.html', {"title": "About us"})
  
-def post(request):
-
-    return render(request, 'home/post.html', {"title": "Posts"})
-
 def search(request):
     search_param = request.GET["search_param"]
     print("search: ", search_param)
@@ -103,7 +99,7 @@ def avatar_load(request):
                     os.remove(avatar.image.path)
                 avatar.image = image
             avatar.save()
-            messages.success(request, "Imagen cargada exitosamente")
+            messages.success(request, "Image uploaded successfully")
             return redirect("home:index")
 
     form = AvatarForm()

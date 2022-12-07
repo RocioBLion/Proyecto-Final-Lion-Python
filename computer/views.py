@@ -67,14 +67,12 @@ class ComputerCreateView(LoginRequiredMixin, CreateView):
 
 class ComputerUpdateView(LoginRequiredMixin, UpdateView):
     model = Computer
-    fields = ["model", "brand", "description", "image"]
+    fields = ["brand", "model", "description", "image", "price"]
 
     def get_success_url(self):
         computer_id = self.kwargs["pk"]
         return reverse_lazy("computer:computer-detail", kwargs={"pk": computer_id})
 
-    def post(self):
-        pass
 
 
 class ComputerDeleteView(LoginRequiredMixin, DeleteView):
